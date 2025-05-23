@@ -8,12 +8,16 @@ import {
   User,
   LogIn,
   UserPlus,
+  CarTaxiFront,
+  ChartArea,
+  ChartAreaIcon,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
   { name: "Produk", icon: <Box />, path: "/produk" },
+  { name: "Pelanggan", icon: <customElements />, path: "/pelanggan" },
   { name: "Laporan", icon: <BarChart2 />, path: "/laporan" },
 ];
 
