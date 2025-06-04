@@ -11,15 +11,19 @@ import {
   CarTaxiFront,
   ChartArea,
   ChartAreaIcon,
+  Contact,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
   { name: "Produk", icon: <Box />, path: "/produk" },
-  { name: "Pelanggan", icon: <customElements />, path: "/pelanggan" },
+  { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
   { name: "Penjualan", icon: <ShoppingCart />, path: "/penjualan" },
   { name: "Laporan", icon: <BarChart2 />, path: "/laporan" },
+  { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+
 ];
 
 const accountItems = [
