@@ -23,6 +23,7 @@ const menuItems = [
   { name: "Penjualan", icon: <ShoppingCart />, path: "/penjualan" },
   { name: "Laporan", icon: <BarChart2 />, path: "/laporan" },
   { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Test", icon: <ChartArea />, path: "/kampanye" },
 
 ];
 
