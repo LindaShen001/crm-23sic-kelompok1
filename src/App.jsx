@@ -11,7 +11,6 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/pelanggan" element={<Pelanggan />} />
-        <Route path="penjualan" element={<SalesManagement />} />
         <Route path="/kampanye" element={<HealthCampaign />} />
 
       </Route>
