@@ -5,6 +5,8 @@ import Pelanggan from "./pages/Pelanggan";
 import HealthCampaign from "./pages/HealthCampaign";
 import KeamananPrivasi from "./pages/KeamananPrivasi";
 import PelaporanAnalisis from "./pages/PelaporanAnalisis";
+import ProductPage from "./pages/ProductPage";
+import ProdukTable from "./pages/ProdukTable";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
              <Route path="/keamanan" element={<KeamananPrivasi />} />
         <Route path="/laporan" element={<PelaporanAnalisis />} />
 
+        <Route path="/shop" element={<ProductPage />} />
+        <Route path="/obat" element={<ProdukTable />} />
       </Route>
     </Routes>
   );
