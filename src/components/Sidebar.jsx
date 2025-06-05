@@ -1,3 +1,5 @@
+import { AiOutlineShoppingCart } from "react-icons/ai"; 
+import { FaBriefcaseMedical } from "react-icons/fa"; 
 import {
   LayoutDashboard,
   Users, // untuk pelanggan
@@ -20,6 +22,8 @@ const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
   { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
   { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
+  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
 
 
 ];
