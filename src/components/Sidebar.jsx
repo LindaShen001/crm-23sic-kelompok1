@@ -20,6 +20,8 @@ const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
   { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
   { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
+  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
 
 
 ];
