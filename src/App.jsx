@@ -7,6 +7,7 @@ import KeamananPrivasi from "./pages/KeamananPrivasi";
 import PelaporanAnalisis from "./pages/PelaporanAnalisis";
 import ProductPage from "./pages/ProductPage";
 import ProdukTable from "./pages/ProdukTable";
+import TransaksiTable from "./pages/TranksaksiTable";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
         <Route path="/shop" element={<ProductPage />} />
         <Route path="/obat" element={<ProdukTable />} />
+        <Route path="/riwayat" element={<TransaksiTable />} />
       </Route>
     </Routes>
   );

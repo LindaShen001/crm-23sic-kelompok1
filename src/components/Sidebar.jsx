@@ -26,6 +26,7 @@ const menuItems = [
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
   { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
   { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
+  { name: "Riwayat Tranksaksi", icon: <FaBriefcaseMedical />, path: "/riwayat" },
 
 
 ];

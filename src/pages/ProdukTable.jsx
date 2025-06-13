@@ -9,6 +9,7 @@ export default function ProdukTable() {
       expired: "2025-08-10",
       stok: 50,
       supplier: "PT Bersih Sejahtera",
+      gambar: "https://via.placeholder.com/60",
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ export default function ProdukTable() {
       expired: "2026-01-15",
       stok: 200,
       supplier: "CV Sehat Selalu",
+      gambar: "https://via.placeholder.com/60",
     },
     {
       id: 3,
@@ -25,6 +27,7 @@ export default function ProdukTable() {
       expired: "2025-11-30",
       stok: 150,
       supplier: "PT Mulia Abadi",
+      gambar: "https://via.placeholder.com/60",
     },
   ]);
 
@@ -35,6 +38,7 @@ export default function ProdukTable() {
     expired: "",
     stok: "",
     supplier: "",
+    gambar: "",
   });
   const [isEditing, setIsEditing] = useState(false);
 
@@ -49,15 +53,21 @@ export default function ProdukTable() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!form.nama || !form.harga || !form.expired || !form.stok || !form.supplier) {
-      alert("Mohon isi semua field");
+    if (!form.nama || !form.harga || !form.expired || !form.stok || !form.supplier || !form.gambar) {
+      alert("Mohon isi semua field termasuk gambar");
       return;
     }
 
     if (isEditing) {
       setProduk((prevProduk) =>
         prevProduk.map((p) =>
-          p.id === form.id ? { ...form, harga: Number(form.harga), stok: Number(form.stok) } : p
+          p.id === form.id
+            ? {
+                ...form,
+                harga: Number(form.harga),
+                stok: Number(form.stok),
+              }
+            : p
         )
       );
       setIsEditing(false);
@@ -71,7 +81,7 @@ export default function ProdukTable() {
       setProduk((prevProduk) => [...prevProduk, newProduk]);
     }
 
-    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "" });
+    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "", gambar: "" });
   }
 
   function hapusProduk(id) {
@@ -88,15 +98,14 @@ export default function ProdukTable() {
 
   function batal() {
     setIsEditing(false);
-    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "" });
+    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "", gambar: "" });
   }
 
-  // Style CSS in JS
   const styles = {
     container: {
       maxWidth: 900,
       margin: "20px auto",
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      fontFamily: "Segoe UI, sans-serif",
       padding: 20,
       backgroundColor: "#f9f9f9",
       borderRadius: 8,
@@ -114,10 +123,6 @@ export default function ProdukTable() {
       borderRadius: 8,
       boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
     },
-    formTitle: {
-      marginBottom: 15,
-      color: "#444",
-    },
     formRow: {
       display: "flex",
       flexDirection: "column",
@@ -133,11 +138,6 @@ export default function ProdukTable() {
       borderRadius: 4,
       border: "1px solid #ccc",
       fontSize: 14,
-      outline: "none",
-      transition: "border-color 0.3s",
-    },
-    inputFocus: {
-      borderColor: "#4a90e2",
     },
     buttonPrimary: {
       backgroundColor: "#4a90e2",
@@ -148,10 +148,6 @@ export default function ProdukTable() {
       fontWeight: "600",
       cursor: "pointer",
       marginRight: 10,
-      transition: "background-color 0.3s",
-    },
-    buttonPrimaryHover: {
-      backgroundColor: "#357ABD",
     },
     buttonSecondary: {
       backgroundColor: "#ccc",
@@ -175,16 +171,12 @@ export default function ProdukTable() {
       fontWeight: "600",
       padding: "12px 10px",
       textAlign: "left",
-      userSelect: "none",
     },
     td: {
       padding: "12px 10px",
       borderBottom: "1px solid #eee",
       color: "#333",
       fontSize: 14,
-    },
-    trHover: {
-      backgroundColor: "#f5faff",
     },
     actionBtn: {
       padding: "6px 10px",
@@ -194,21 +186,14 @@ export default function ProdukTable() {
       fontWeight: "600",
       fontSize: 13,
       marginRight: 6,
-      transition: "background-color 0.3s",
     },
     editBtn: {
       backgroundColor: "#ffc107",
       color: "#333",
     },
-    editBtnHover: {
-      backgroundColor: "#e0a800",
-    },
     deleteBtn: {
       backgroundColor: "#dc3545",
       color: "#fff",
-    },
-    deleteBtnHover: {
-      backgroundColor: "#b02a37",
     },
   };
 
@@ -217,8 +202,6 @@ export default function ProdukTable() {
       <h2 style={styles.title}>Daftar Produk</h2>
 
       <form onSubmit={handleSubmit} style={styles.form}>
-        <h3 style={styles.formTitle}>{isEditing ? "Edit Produk" : "Tambah Produk"}</h3>
-
         <div style={styles.formRow}>
           <label style={styles.label}>Nama Produk:</label>
           <input
@@ -227,6 +210,19 @@ export default function ProdukTable() {
             value={form.nama}
             onChange={handleChange}
             placeholder="Nama produk"
+            required
+            style={styles.input}
+          />
+        </div>
+
+        <div style={styles.formRow}>
+          <label style={styles.label}>URL Gambar Produk:</label>
+          <input
+            type="text"
+            name="gambar"
+            value={form.gambar}
+            onChange={handleChange}
+            placeholder="https://example.com/gambar.jpg"
             required
             style={styles.input}
           />
@@ -283,21 +279,12 @@ export default function ProdukTable() {
           />
         </div>
 
-        <button
-          type="submit"
-          style={styles.buttonPrimary}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = styles.buttonPrimaryHover.backgroundColor)}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = styles.buttonPrimary.backgroundColor)}
-        >
+        <button type="submit" style={styles.buttonPrimary}>
           {isEditing ? "Update Produk" : "Tambah Produk"}
         </button>
 
         {isEditing && (
-          <button
-            type="button"
-            style={styles.buttonSecondary}
-            onClick={batal}
-          >
+          <button type="button" style={styles.buttonSecondary} onClick={batal}>
             Batal
           </button>
         )}
@@ -308,6 +295,7 @@ export default function ProdukTable() {
           <tr>
             <th style={styles.th}>No</th>
             <th style={styles.th}>Nama Produk</th>
+            <th style={styles.th}>Gambar</th>
             <th style={styles.th}>Harga</th>
             <th style={styles.th}>Expired</th>
             <th style={styles.th}>Jumlah Stok</th>
@@ -318,39 +306,27 @@ export default function ProdukTable() {
         <tbody>
           {produk.length === 0 ? (
             <tr>
-              <td colSpan="7" style={{ textAlign: "center", padding: 20 }}>
+              <td colSpan="8" style={{ textAlign: "center", padding: 20 }}>
                 Tidak ada produk
               </td>
             </tr>
           ) : (
             produk.map((p, idx) => (
-              <tr
-                key={p.id}
-                style={{ cursor: "default" }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.trHover.backgroundColor)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
-              >
+              <tr key={p.id}>
                 <td style={styles.td}>{idx + 1}</td>
                 <td style={styles.td}>{p.nama}</td>
+                <td style={styles.td}>
+                  <img src={p.gambar} alt={p.nama} style={{ width: 60, height: 60, borderRadius: 4 }} />
+                </td>
                 <td style={styles.td}>Rp {p.harga.toLocaleString("id-ID")}</td>
                 <td style={styles.td}>{p.expired}</td>
                 <td style={styles.td}>{p.stok}</td>
                 <td style={styles.td}>{p.supplier}</td>
                 <td style={styles.td}>
-                  <button
-                    onClick={() => editProduk(p.id)}
-                    style={{ ...styles.actionBtn, ...styles.editBtn }}
-                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = styles.editBtnHover.backgroundColor)}
-                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = styles.editBtn.backgroundColor)}
-                  >
+                  <button onClick={() => editProduk(p.id)} style={{ ...styles.actionBtn, ...styles.editBtn }}>
                     Edit
                   </button>
-                  <button
-                    onClick={() => hapusProduk(p.id)}
-                    style={{ ...styles.actionBtn, ...styles.deleteBtn }}
-                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = styles.deleteBtnHover.backgroundColor)}
-                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = styles.deleteBtn.backgroundColor)}
-                  >
+                  <button onClick={() => hapusProduk(p.id)} style={{ ...styles.actionBtn, ...styles.deleteBtn }}>
                     Hapus
                   </button>
                 </td>
