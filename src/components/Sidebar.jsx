@@ -1,49 +1,42 @@
-import { AiOutlineShoppingCart } from "react-icons/ai"; 
-import { FaBriefcaseMedical } from "react-icons/fa"; 
+// src/components/Sidebar.jsx
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FaBriefcaseMedical } from "react-icons/fa";
 import {
   LayoutDashboard,
-  Users, // untuk pelanggan
-  ShoppingCart, // untuk penjualan
-  Box, // untuk produk
-  BarChart2, // untuk laporan
-  Settings, // untuk pengaturan akun
-  User,
+  BarChart2,
+  Settings,
   LogIn,
   UserPlus,
-  CarTaxiFront,
-  ChartArea,
-  ChartAreaIcon,
   Contact,
+  BookOpen,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-
 const menuItems = [
-  { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
-  { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
-  { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
-  { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
-  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
-  { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
-  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
-
-
+  { name: "Dashboard", icon: <LayoutDashboard />, path: "/admin" },
+  { name: "Manajemen Obat", icon: <AiOutlineShoppingCart />, path: "/admin/obat" },
+  { name: "Manajemen Transaksi", icon: <FaBriefcaseMedical />, path: "/admin/transaksi" },
+  { name: "Manajemen Restock", icon: <FaBriefcaseMedical />, path: "/admin/restock" },
+  { name: "Manajemen Promo", icon: <FaBriefcaseMedical />, path: "/admin/promo" },
+  { name: "Manajemen Kampanye", icon: <FaBriefcaseMedical />, path: "/admin/kampanye" },
+  { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/faq" },
+  { name: "Manajemen Account", icon: <Contact />, path: "/admin/pelanggan" },
+  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
 ];
 
 const accountItems = [
-  { name: "Pengaturan Akun", icon: <Settings />, path: "/akun" },
-  { name: "Sign In", icon: <LogIn />, path: "/signin" },
+  { name: "Pengaturan Akun", icon: <Settings />, path: "/admin/akun" },
+  { name: "Sign In", icon: <LogIn />, path: "/login" },
   { name: "Sign Up", icon: <UserPlus />, path: "/signup" },
 ];
 
 const Sidebar = () => {
   const location = useLocation();
-
   const isActive = (path) => location.pathname === path;
 
   return (
     <aside className="bg-white w-64 h-screen shadow-lg px-4 py-6 hidden md:block">
-      <div className="text-xl font-bold mb-8 text-purple-700">UMKM CRM</div>
+      <div className="text-xl font-bold mb-8 text-purple-700">Dashboard Admin</div>
       <nav className="space-y-1">
         {menuItems.map((item) => (
           <Link

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const HealthCampaign = () => {
+const Kampanye = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [form, setForm] = useState({ title: "", content: "", sendAt: "" });
 
@@ -102,4 +102,4 @@ const HealthCampaign = () => {
   );
 };
 
-export default HealthCampaign;
+export default Kampanye;

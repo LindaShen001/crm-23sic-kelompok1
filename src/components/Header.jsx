@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { Search, User } from "lucide-react";
 
 const Header = () => {
+  const navigate = useNavigate(); // ini baris baru
+
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-white shadow-sm border-b sticky top-0 z-10">
       <div className="text-sm text-gray-500">
@@ -15,7 +18,10 @@ const Header = () => {
           />
           <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
         </div>
-        <div className="flex items-center gap-2 text-sm cursor-pointer text-gray-700 hover:text-purple-700">
+        <div
+          onClick={() => navigate("/login")} // <- tambahkan ini
+          className="flex items-center gap-2 text-sm cursor-pointer text-gray-700 hover:text-purple-700"
+        >
           <User className="w-4 h-4" />
           Sign In
         </div>
