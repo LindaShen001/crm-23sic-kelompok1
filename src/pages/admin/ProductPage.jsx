@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import shadowobatsalep from '../assets/images/shadowobatsalep.png';
+import shadowobatsalep from '../assets/images/shadowwobatsalep.png';
 import shadowobattablet1 from '../assets/images/shadowobattablet1.png';
 import shadowobattablet2 from '../assets/images/shadowobattablet2.png';
 
