@@ -22,6 +22,16 @@ const menuItems = [
   { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/faq" },
   { name: "Manajemen Account", icon: <Contact />, path: "/admin/pelanggan" },
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
+  { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
+  { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
+  { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
+  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
+  { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
+  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
+  { name: "Riwayat Tranksaksi", icon: <FaBriefcaseMedical />, path: "/riwayat" },
+
+
 ];
 
 const accountItems = [

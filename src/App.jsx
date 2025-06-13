@@ -20,25 +20,27 @@ import FAQCustomer from "./pages/customers/FAQCustomer";
 
 // Auth Page
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Pelanggan from "./pages/Pelanggan";
+import HealthCampaign from "./pages/HealthCampaign";
+import KeamananPrivasi from "./pages/KeamananPrivasi";
+import PelaporanAnalisis from "./pages/PelaporanAnalisis";
+import ProductPage from "./pages/ProductPage";
+import ProdukTable from "./pages/ProdukTable";
+import TransaksiTable from "./pages/TranksaksiTable";
 
 function App() {
   return (
     <Routes>
-      {/* Customer Routes */}
-      <Route path="/" element={<DashboardCustomer />} />
-      <Route path="/layanan/keamanan" element={<KeamananPrivasi />} />
-      <Route path="/faq" element={<FAQCustomer />} />
-      <Route path="/login" element={<Login />} />
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/pelanggan" element={<Pelanggan />} />
+        <Route path="/kampanye" element={<HealthCampaign />} />
+             <Route path="/keamanan" element={<KeamananPrivasi />} />
+        <Route path="/laporan" element={<PelaporanAnalisis />} />
 
-      {/* Admin Routes */}
-      <Route path="/admin" element={<MainLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="pelanggan" element={<Pelanggan />} />
-        <Route path="kampanye" element={<Kampanye />} />
-        <Route path="laporan" element={<PelaporanAnalisis />} />
-        <Route path="shop" element={<ProductPage />} />
-        <Route path="obat" element={<ProdukTable />} />
-        <Route path="faq" element={<FAQAdmin />} />
+        <Route path="/shop" element={<ProductPage />} />
+        <Route path="/obat" element={<ProdukTable />} />
       </Route>
     </Routes>
   );
