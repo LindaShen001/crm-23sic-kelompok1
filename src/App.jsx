@@ -17,9 +17,7 @@ import FAQAdmin from "./pages/admin/FAQAdmin";
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
 import KeamananPrivasi from "./pages/customers/KeamananPrivasi";
 import FAQCustomer from "./pages/customers/FAQCustomer";
-
-// Auth Page
-import Login from "./pages/Login";
+import Login from "./pages/customers/Login"; // ✔️ Sesuai lokasi folder kamu
 
 function App() {
   return (
