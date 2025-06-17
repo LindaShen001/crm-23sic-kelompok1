@@ -14,23 +14,15 @@ import {
 import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { name: "Dashboard", icon: <LayoutDashboard />, path: "/admin" },
-  { name: "Manajemen Obat", icon: <AiOutlineShoppingCart />, path: "/admin/obat" },
-  { name: "Manajemen Transaksi", icon: <FaBriefcaseMedical />, path: "/admin/transaksi" },
+  { name: "Dashboard", icon: <LayoutDashboard />, path: "/dashboard" },
+  { name: "Manajemen Obat", icon: <AiOutlineShoppingCart />, path: "/obat" },
+  { name: "Manajemen Transaksi", icon: <FaBriefcaseMedical />, path: "/transaksi" },
   { name: "Manajemen Restock", icon: <FaBriefcaseMedical />, path: "/admin/restock" },
-  { name: "Manajemen Promo", icon: <FaBriefcaseMedical />, path: "/admin/promo" },
+  { name: "Manajemen Promo", icon: <FaBriefcaseMedical />, path: "/promo" },
   { name: "Manajemen Kampanye", icon: <FaBriefcaseMedical />, path: "/admin/kampanye" },
-  { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/faq" },
-  { name: "Manajemen Account", icon: <Contact />, path: "/admin/pelanggan" },
+  { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/FAQAdmin" },
+  { name: "Manajemen Account", icon: <Contact />, path: "/pelanggan" },
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
-  { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
-  { name: "Pelanggan", icon: <Contact />, path: "/pelanggan" },
-  { name: "Kampanye Kesehatan", icon: <ActivitySquare />, path: "/kampanye" }, // FIXED
-  { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
-  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
-  { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
-  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
-  { name: "Riwayat Tranksaksi", icon: <FaBriefcaseMedical />, path: "/riwayat" },
 ];
 
 const accountItems = [

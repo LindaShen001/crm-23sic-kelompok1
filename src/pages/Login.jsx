@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
 
     if (email === "linda@email.com" && password === "123") {
-      navigate("/admin");
+      navigate("/dashboard");
     } else {
       setError("Email atau password salah.");
     }

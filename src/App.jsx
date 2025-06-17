@@ -17,28 +17,31 @@ import FAQAdmin from "./pages/admin/FAQAdmin";
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
 import KeamananPrivasi from "./pages/customers/KeamananPrivasi";
 import FAQCustomer from "./pages/customers/FAQCustomer";
-import Login from "./pages/customers/Login"; // ✔️ Sesuai lokasi folder kamu
+
+// Auth Page
+import Login from "./pages/Login";
+import TransaksiTable from "./pages/admin/TranksaksiTable";
 
 function App() {
   return (
     <Routes>
+      {/* Public & Customer Routes */}
+      <Route path="/" element={<DashboardCustomer />} />
+      <Route path="/layanan/keamanan" element={<KeamananPrivasi />} />
+      <Route path="/customer/faq" element={<FAQCustomer />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/shop" element={<ProductPage />} />
+
+
+      {/* Protected Admin Routes with Layout */}
       <Route element={<MainLayout />}>
-        {/* Admin Pages */}
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/pelanggan" element={<Pelanggan />} />
-        <Route path="/kampanye" element={<Kampanye />} />
+        <Route path="/transaksi" element={<TransaksiTable />} />
+        <Route path="//admin/kampanye" element={<Kampanye />} />
         <Route path="/laporan" element={<PelaporanAnalisis />} />
-        <Route path="/shop" element={<ProductPage />} />
         <Route path="/obat" element={<ProdukTable />} />
-        <Route path="/faq-admin" element={<FAQAdmin />} />
-
-        {/* Customer Pages */}
-        <Route path="/customer/dashboard" element={<DashboardCustomer />} />
-        <Route path="/customer/keamanan" element={<KeamananPrivasi />} />
-        <Route path="/customer/faq" element={<FAQCustomer />} />
-
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
       </Route>
     </Routes>
   );

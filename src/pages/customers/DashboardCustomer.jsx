@@ -13,9 +13,9 @@ const DashboardCustomer = () => {
         <nav className="flex space-x-6 text-sm font-semibold text-gray-700 relative">
           <Link to="/" className="hover:text-blue-600 transition">Home</Link>
           <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
-          <Link to="/produk" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
           <Link to="/promo" className="hover:text-blue-600 transition">Promo</Link>
-          <Link to="/faq" className="hover:text-blue-600 transition">FAQ</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
 
           {/* Dropdown: Layanan */}
           <div className="relative group">
