@@ -9,6 +9,7 @@ import {
   UserPlus,
   Contact,
   BookOpen,
+  ActivitySquare, // Gantikan ChartArea dengan ini (ikon kampanye misalnya)
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -23,15 +24,13 @@ const menuItems = [
   { name: "Manajemen Account", icon: <Contact />, path: "/admin/pelanggan" },
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
-  { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
-  { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Pelanggan", icon: <Contact />, path: "/pelanggan" },
+  { name: "Kampanye Kesehatan", icon: <ActivitySquare />, path: "/kampanye" }, // FIXED
   { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
   { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
   { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
   { name: "Riwayat Tranksaksi", icon: <FaBriefcaseMedical />, path: "/riwayat" },
-
-
 ];
 
 const accountItems = [
