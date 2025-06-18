@@ -9,7 +9,8 @@ import {
   UserPlus,
   Contact,
   BookOpen,
-  ActivitySquare, // Gantikan ChartArea dengan ini (ikon kampanye misalnya)
+  ActivitySquare,
+  PackagePlus, 
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -22,7 +23,9 @@ const menuItems = [
   { name: "Manajemen Kampanye", icon: <FaBriefcaseMedical />, path: "/admin/kampanye" },
   { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/FAQAdmin" },
   { name: "Manajemen Account", icon: <Contact />, path: "/pelanggan" },
-  { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
+  { name: "Laporan Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
+  { name: "Manajemen Restok", icon: <PackagePlus />, path: "/admin/restok" },
+
 ];
 
 const accountItems = [
@@ -36,7 +39,7 @@ const Sidebar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <aside className="bg-white w-64 h-screen shadow-lg px-4 py-6 hidden md:block">
+<aside className="bg-white w-64 min-h-screen max-h-screen overflow-y-auto shadow-lg px-4 py-6 hidden md:block">
       <div className="text-xl font-bold mb-8 text-purple-700">Dashboard Admin</div>
       <nav className="space-y-1">
         {menuItems.map((item) => (
