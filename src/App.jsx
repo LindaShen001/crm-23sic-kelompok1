@@ -8,10 +8,12 @@ import MainLayout from "./components/MainLayout";
 import Dashboard from "./pages/admin/DashboardAdmin";
 import Pelanggan from "./pages/admin/Pelanggan";
 import Kampanye from "./pages/admin/Kampanye";
-import PelaporanAnalisis from "./pages/admin/PelaporanAnalisis";
 import ProdukTable from "./pages/admin/ProdukTable";
 import ProductPage from "./pages/admin/ProductPage";
 import FAQAdmin from "./pages/admin/FAQAdmin";
+import Restock from "./pages/admin/Restock";
+import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
+
 
 // Customer Pages
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
@@ -21,6 +23,8 @@ import FAQCustomer from "./pages/customers/FAQCustomer";
 // Auth Page
 import Login from "./pages/Login";
 import TransaksiTable from "./pages/admin/TranksaksiTable";
+
+
 
 function App() {
   return (
@@ -39,9 +43,10 @@ function App() {
         <Route path="/pelanggan" element={<Pelanggan />} />
         <Route path="/transaksi" element={<TransaksiTable />} />
         <Route path="//admin/kampanye" element={<Kampanye />} />
-        <Route path="/laporan" element={<PelaporanAnalisis />} />
         <Route path="/obat" element={<ProdukTable />} />
         <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
+        <Route path="/admin/Restock" element={<Restock />} />
+        <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
       </Route>
     </Routes>
   );
