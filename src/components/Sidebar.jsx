@@ -24,7 +24,6 @@ const menuItems = [
   { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/FAQAdmin" },
   { name: "Manajemen Account", icon: <Contact />, path: "/pelanggan" },
   { name: "Laporan Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
-  { name: "Manajemen Restok", icon: <PackagePlus />, path: "/admin/restok" },
 
 ];
 

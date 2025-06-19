@@ -19,11 +19,12 @@ import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
 import KeamananPrivasi from "./pages/customers/KeamananPrivasi";
 import FAQCustomer from "./pages/customers/FAQCustomer";
+import ProfileCustomer from "./pages/customers/ProfileCustomer";
+import ContactCustomer from "./pages/customers/ContactCustomer";
 
 // Auth Page
 import Login from "./pages/Login";
 import TransaksiTable from "./pages/admin/TranksaksiTable";
-
 
 
 function App() {
@@ -35,6 +36,8 @@ function App() {
       <Route path="/customer/faq" element={<FAQCustomer />} />
       <Route path="/login" element={<Login />} />
       <Route path="/shop" element={<ProductPage />} />
+      <Route path="/profile" element={<ProfileCustomer />} />
+      <Route path="/kontak" element={<ContactCustomer />} />
 
 
       {/* Protected Admin Routes with Layout */}
