@@ -1,3 +1,10 @@
+import { MdOutlineMedicalServices } from "react-icons/md"; 
+import { BiBarChart } from "react-icons/bi"; 
+import { RiAccountPinBoxLine } from "react-icons/ri"; 
+import { MdOutlineSwitchAccount } from "react-icons/md"; 
+import { BiBookAlt } from "react-icons/bi"; 
+import { MdDiscount } from "react-icons/md"; 
+import { CiDiscount1 } from "react-icons/ci"; 
 import { MdSystemUpdateAlt } from "react-icons/md"; 
 import { GrTransaction } from "react-icons/gr"; 
 import { MdOutlineCampaign } from "react-icons/md"; 
@@ -21,15 +28,15 @@ import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/dashboard" },
-  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
+  { name: "Manajemen Obat", icon: <MdOutlineMedicalServices />, path: "/obat" },
   { name: "Manajemen Transaksi", icon: <GrTransaction />, path: "/transaksi" },
   { name: "Manajemen Restock", icon:<MdSystemUpdateAlt /> , path: "/admin/restock" },
-  { name: "Manajemen Promo", icon: <FaBriefcaseMedical />, path: "/promo" },
+  { name: "Manajemen Promo", icon: <MdDiscount />, path: "/promo" },
   { name: "Manajemen Kampanye", icon: <MdOutlineCampaign />, path: "/admin/kampanye" },
-  { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/FAQAdmin" },
-  { name: "Manajemen Account", icon: <Contact />, path: "/pelanggan" },
+  { name: "Manajemen FAQ", icon: <BiBookAlt />, path: "/admin/FAQAdmin" },
+  { name: "Manajemen Account", icon: <RiAccountPinBoxLine />, path: "/pelanggan" },
   { name: "Manajemen keluhan", icon: <AiOutlineMail />, path: "/admin/keluhan" },
-  { name: "Laporan Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
+  { name: "Laporan Analisis", icon: <BiBarChart />, path: "/admin/laporan" },
 
 ];
 
