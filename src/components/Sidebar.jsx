@@ -1,18 +1,14 @@
 import { MdOutlineMedicalServices } from "react-icons/md"; 
 import { BiBarChart } from "react-icons/bi"; 
 import { RiAccountPinBoxLine } from "react-icons/ri"; 
-import { MdOutlineSwitchAccount } from "react-icons/md"; 
 import { BiBookAlt } from "react-icons/bi"; 
 import { MdDiscount } from "react-icons/md"; 
-import { CiDiscount1 } from "react-icons/ci"; 
 import { MdSystemUpdateAlt } from "react-icons/md"; 
 import { GrTransaction } from "react-icons/gr"; 
 import { MdOutlineCampaign } from "react-icons/md"; 
 import { AiOutlineMail } from "react-icons/ai"; 
-import { CgMail } from "react-icons/cg"; 
-// src/components/Sidebar.jsx
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FaBriefcaseMedical } from "react-icons/fa";
+
+
 import {
   LayoutDashboard,
   BarChart2,
