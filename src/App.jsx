@@ -25,6 +25,7 @@ import ContactCustomer from "./pages/customers/ContactCustomer";
 // Auth Page
 import Login from "./pages/Login";
 import TransaksiTable from "./pages/admin/TranksaksiTable";
+import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
 
 
 function App() {
@@ -39,7 +40,6 @@ function App() {
       <Route path="/profile" element={<ProfileCustomer />} />
       <Route path="/kontak" element={<ContactCustomer />} />
 
-
       {/* Protected Admin Routes with Layout */}
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
@@ -49,6 +49,7 @@ function App() {
         <Route path="/obat" element={<ProdukTable />} />
         <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
         <Route path="/admin/Restock" element={<Restock />} />
+        <Route path="/admin/keluhan" element={<KeluhanDashboard />} />
         <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
       </Route>
     </Routes>

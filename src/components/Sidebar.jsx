@@ -1,3 +1,8 @@
+import { MdSystemUpdateAlt } from "react-icons/md"; 
+import { GrTransaction } from "react-icons/gr"; 
+import { MdOutlineCampaign } from "react-icons/md"; 
+import { AiOutlineMail } from "react-icons/ai"; 
+import { CgMail } from "react-icons/cg"; 
 // src/components/Sidebar.jsx
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaBriefcaseMedical } from "react-icons/fa";
@@ -16,13 +21,14 @@ import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/dashboard" },
-  { name: "Manajemen Obat", icon: <AiOutlineShoppingCart />, path: "/obat" },
-  { name: "Manajemen Transaksi", icon: <FaBriefcaseMedical />, path: "/transaksi" },
-  { name: "Manajemen Restock", icon: <FaBriefcaseMedical />, path: "/admin/restock" },
+  { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
+  { name: "Manajemen Transaksi", icon: <GrTransaction />, path: "/transaksi" },
+  { name: "Manajemen Restock", icon:<MdSystemUpdateAlt /> , path: "/admin/restock" },
   { name: "Manajemen Promo", icon: <FaBriefcaseMedical />, path: "/promo" },
-  { name: "Manajemen Kampanye", icon: <FaBriefcaseMedical />, path: "/admin/kampanye" },
+  { name: "Manajemen Kampanye", icon: <MdOutlineCampaign />, path: "/admin/kampanye" },
   { name: "Manajemen FAQ", icon: <BookOpen />, path: "/admin/FAQAdmin" },
   { name: "Manajemen Account", icon: <Contact />, path: "/pelanggan" },
+  { name: "Manajemen keluhan", icon: <AiOutlineMail />, path: "/admin/keluhan" },
   { name: "Laporan Analisis", icon: <BarChart2 />, path: "/admin/laporan" },
 
 ];
