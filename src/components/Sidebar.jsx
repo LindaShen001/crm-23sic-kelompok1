@@ -1,3 +1,6 @@
+import { MdAddLocationAlt } from "react-icons/md"; 
+import { CiDiscount1 } from "react-icons/ci"; 
+import { MdHistory } from "react-icons/md"; 
 import { AiOutlineShoppingCart } from "react-icons/ai"; 
 import { FaBriefcaseMedical } from "react-icons/fa"; 
 import {
@@ -22,11 +25,14 @@ const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/" },
   { name: "Pelanggan", icon: <Contact/>, path: "/pelanggan" },
   { name: "Kampanye Kesehatan", icon: <ChartArea />, path: "/kampanye" },
+  { name: "Promo", icon: <CiDiscount1 />, path:"/promo-list" },
   { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
   { name: "Pelaporan & Analisis", icon: <BarChart2 />, path: "/laporan" },
   { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
   { name: "Manajemen Obat", icon: <FaBriefcaseMedical />, path: "/obat" },
-  { name: "Riwayat Tranksaksi", icon: <FaBriefcaseMedical />, path: "/riwayat" },
+  { name: "Riwayat Tranksaksi", icon: <MdHistory />, path:"/riwayat" },
+  { name: "Alamat Pelanggan", icon: <MdAddLocationAlt />, path:"/alamat" },
+
 
 
 ];

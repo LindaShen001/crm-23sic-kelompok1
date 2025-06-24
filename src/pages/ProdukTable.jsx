@@ -1,338 +1,245 @@
-import React, { useState } from "react";
+// File: src/pages/ProdukTable.jsx
+import React, { useState, useEffect } from "react";
+import { supabase } from "../supabase";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 export default function ProdukTable() {
-  const [produk, setProduk] = useState([
-    {
-      id: 1,
-      nama: "Sabun Mandi",
-      harga: 15000,
-      expired: "2025-08-10",
-      stok: 50,
-      supplier: "PT Bersih Sejahtera",
-      gambar: "https://via.placeholder.com/60",
-    },
-    {
-      id: 2,
-      nama: "Sikat Gigi",
-      harga: 12000,
-      expired: "2026-01-15",
-      stok: 200,
-      supplier: "CV Sehat Selalu",
-      gambar: "https://via.placeholder.com/60",
-    },
-    {
-      id: 3,
-      nama: "Pasta Gigi",
-      harga: 25000,
-      expired: "2025-11-30",
-      stok: 150,
-      supplier: "PT Mulia Abadi",
-      gambar: "https://via.placeholder.com/60",
-    },
-  ]);
-
+  const [produk, setProduk] = useState([]);
   const [form, setForm] = useState({
-    id: null,
     nama: "",
     harga: "",
     expired: "",
-    stok: "",
+    stock: "",
     supplier: "",
+    kategori: "obat",
     gambar: "",
   });
-  const [isEditing, setIsEditing] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [notification, setNotification] = useState("");
+  const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+  const [kategoriFilter, setKategoriFilter] = useState("");
 
-  function handleChange(e) {
+  useEffect(() => {
+    fetchProduk();
+  }, []);
+
+  const fetchProduk = async () => {
+    const { data, error } = await supabase.from("obat").select("*");
+    if (error) {
+      setError("Gagal memuat data produk.");
+    } else {
+      setProduk(data);
+    }
+  };
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const { nama, harga, expired, stock, supplier, kategori, gambar } = form;
 
-    if (!form.nama || !form.harga || !form.expired || !form.stok || !form.supplier || !form.gambar) {
-      alert("Mohon isi semua field termasuk gambar");
+    if (!nama || !harga || !expired || !stock || !supplier || !kategori || !gambar) {
+      setError("Mohon isi semua field.");
       return;
     }
 
-    if (isEditing) {
-      setProduk((prevProduk) =>
-        prevProduk.map((p) =>
-          p.id === form.id
-            ? {
-                ...form,
-                harga: Number(form.harga),
-                stok: Number(form.stok),
-              }
-            : p
-        )
-      );
-      setIsEditing(false);
-    } else {
-      const newProduk = {
-        ...form,
-        id: produk.length ? produk[produk.length - 1].id + 1 : 1,
-        harga: Number(form.harga),
-        stok: Number(form.stok),
+    try {
+      const newProduct = {
+        nama,
+        harga: Number(harga),
+        expired,
+        stock: Number(stock),
+        supplier,
+        kategori,
+        gambar,
       };
-      setProduk((prevProduk) => [...prevProduk, newProduk]);
+
+      let response;
+      if (editingId) {
+        response = await supabase.from("obat").update(newProduct).eq("id", editingId).select();
+        if (response.error) throw response.error;
+        setProduk((prev) => prev.map((p) => (p.id === editingId ? { ...response.data[0] } : p)));
+        setNotification("Produk berhasil diperbarui.");
+      } else {
+        response = await supabase.from("obat").insert([newProduct]).select();
+        if (response.error) throw response.error;
+        setProduk((prev) => [...prev, ...response.data]);
+        setNotification("Produk berhasil ditambahkan.");
+      }
+
+      setForm({
+        nama: "",
+        harga: "",
+        expired: "",
+        stock: "",
+        supplier: "",
+        kategori: "obat",
+        gambar: "",
+      });
+      setEditingId(null);
+      setError("");
+    } catch (err) {
+      setError("Gagal menyimpan produk.");
     }
-
-    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "", gambar: "" });
-  }
-
-  function hapusProduk(id) {
-    if (window.confirm("Yakin ingin menghapus produk ini?")) {
-      setProduk((prevProduk) => prevProduk.filter((p) => p.id !== id));
-    }
-  }
-
-  function editProduk(id) {
-    const produkToEdit = produk.find((p) => p.id === id);
-    setForm(produkToEdit);
-    setIsEditing(true);
-  }
-
-  function batal() {
-    setIsEditing(false);
-    setForm({ id: null, nama: "", harga: "", expired: "", stok: "", supplier: "", gambar: "" });
-  }
-
-  const styles = {
-    container: {
-      maxWidth: 900,
-      margin: "20px auto",
-      fontFamily: "Segoe UI, sans-serif",
-      padding: 20,
-      backgroundColor: "#f9f9f9",
-      borderRadius: 8,
-      boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-    },
-    title: {
-      textAlign: "center",
-      color: "#333",
-      marginBottom: 20,
-    },
-    form: {
-      marginBottom: 30,
-      backgroundColor: "#fff",
-      padding: 20,
-      borderRadius: 8,
-      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-    },
-    formRow: {
-      display: "flex",
-      flexDirection: "column",
-      marginBottom: 15,
-    },
-    label: {
-      marginBottom: 6,
-      fontWeight: "600",
-      color: "#555",
-    },
-    input: {
-      padding: 8,
-      borderRadius: 4,
-      border: "1px solid #ccc",
-      fontSize: 14,
-    },
-    buttonPrimary: {
-      backgroundColor: "#4a90e2",
-      border: "none",
-      padding: "10px 16px",
-      borderRadius: 5,
-      color: "#fff",
-      fontWeight: "600",
-      cursor: "pointer",
-      marginRight: 10,
-    },
-    buttonSecondary: {
-      backgroundColor: "#ccc",
-      border: "none",
-      padding: "10px 16px",
-      borderRadius: 5,
-      cursor: "pointer",
-      fontWeight: "600",
-    },
-    table: {
-      width: "100%",
-      borderCollapse: "collapse",
-      backgroundColor: "#fff",
-      borderRadius: 8,
-      overflow: "hidden",
-      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-    },
-    th: {
-      backgroundColor: "#4a90e2",
-      color: "#fff",
-      fontWeight: "600",
-      padding: "12px 10px",
-      textAlign: "left",
-    },
-    td: {
-      padding: "12px 10px",
-      borderBottom: "1px solid #eee",
-      color: "#333",
-      fontSize: 14,
-    },
-    actionBtn: {
-      padding: "6px 10px",
-      borderRadius: 5,
-      border: "none",
-      cursor: "pointer",
-      fontWeight: "600",
-      fontSize: 13,
-      marginRight: 6,
-    },
-    editBtn: {
-      backgroundColor: "#ffc107",
-      color: "#333",
-    },
-    deleteBtn: {
-      backgroundColor: "#dc3545",
-      color: "#fff",
-    },
   };
 
+  const handleEdit = (produk) => {
+    setForm({
+      nama: produk.nama || "",
+      harga: produk.harga || "",
+      expired: produk.expired || "",
+      stock: produk.stock || "",
+      supplier: produk.supplier || "",
+      kategori: produk.kategori || "obat",
+      gambar: produk.gambar || "",
+    });
+    setEditingId(produk.id);
+  };
+
+  const hapusProduk = async (id) => {
+    await supabase.from("obat").delete().eq("id", id);
+    setProduk((prev) => prev.filter((p) => p.id !== id));
+    setNotification("Produk berhasil dihapus.");
+    setTimeout(() => setNotification(""), 4000);
+  };
+
+  const kategoriUnik = [...new Set(produk.map((p) => p.kategori))];
+  const filteredProduk = produk.filter((p) =>
+    p.nama.toLowerCase().includes(search.toLowerCase()) &&
+    (kategoriFilter ? p.kategori === kategoriFilter : true)
+  );
+  const expiredProduk = produk.filter((p) => new Date(p.expired) < new Date());
+
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Daftar Produk</h2>
+    <div className="p-6 max-w-6xl mx-auto">
+      <h2 className="text-xl font-semibold mb-4 text-blue-700">Daftar Produk</h2>
 
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.formRow}>
-          <label style={styles.label}>Nama Produk:</label>
-          <input
-            type="text"
-            name="nama"
-            value={form.nama}
-            onChange={handleChange}
-            placeholder="Nama produk"
-            required
-            style={styles.input}
-          />
+      {notification && (
+        <div className="mb-4 text-green-600 text-sm text-center bg-green-50 py-2 rounded">
+          {notification}
         </div>
+      )}
+      {error && <p className="text-red-500 mb-4">{error}</p>}
 
-        <div style={styles.formRow}>
-          <label style={styles.label}>URL Gambar Produk:</label>
-          <input
-            type="text"
-            name="gambar"
-            value={form.gambar}
-            onChange={handleChange}
-            placeholder="https://example.com/gambar.jpg"
-            required
-            style={styles.input}
-          />
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-white p-4 rounded shadow">
+        {/* ...semua input sama seperti sebelumnya... */}
+        <div>
+          <label className="text-sm font-medium text-gray-700">Nama Produk</label>
+          <input name="nama" value={form.nama} onChange={handleChange} className="border px-3 py-2 rounded w-full" />
         </div>
-
-        <div style={styles.formRow}>
-          <label style={styles.label}>Harga:</label>
-          <input
-            type="number"
-            name="harga"
-            value={form.harga}
-            onChange={handleChange}
-            placeholder="Harga produk"
-            required
-            style={styles.input}
-          />
+        <div>
+          <label className="text-sm font-medium text-gray-700">Harga</label>
+          <input name="harga" value={form.harga} onChange={handleChange} type="number" className="border px-3 py-2 rounded w-full" />
         </div>
-
-        <div style={styles.formRow}>
-          <label style={styles.label}>Expired:</label>
-          <input
-            type="date"
-            name="expired"
-            value={form.expired}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
+        <div>
+          <label className="text-sm font-medium text-gray-700">Stok</label>
+          <input name="stock" value={form.stock} onChange={handleChange} type="number" className="border px-3 py-2 rounded w-full" />
         </div>
-
-        <div style={styles.formRow}>
-          <label style={styles.label}>Jumlah Stok:</label>
-          <input
-            type="number"
-            name="stok"
-            value={form.stok}
-            onChange={handleChange}
-            placeholder="Jumlah stok"
-            required
-            style={styles.input}
-          />
+        <div>
+          <label className="text-sm font-medium text-gray-700">Tanggal Expired</label>
+          <input name="expired" value={form.expired} onChange={handleChange} type="date" className="border px-3 py-2 rounded w-full" />
         </div>
-
-        <div style={styles.formRow}>
-          <label style={styles.label}>Nama Supplier:</label>
-          <input
-            type="text"
-            name="supplier"
-            value={form.supplier}
-            onChange={handleChange}
-            placeholder="Nama supplier"
-            required
-            style={styles.input}
-          />
+        <div>
+          <label className="text-sm font-medium text-gray-700">Supplier</label>
+          <input name="supplier" value={form.supplier} onChange={handleChange} className="border px-3 py-2 rounded w-full" />
         </div>
-
-        <button type="submit" style={styles.buttonPrimary}>
-          {isEditing ? "Update Produk" : "Tambah Produk"}
+        <div>
+          <label className="text-sm font-medium text-gray-700">Kategori</label>
+          <select name="kategori" value={form.kategori} onChange={handleChange} className="border px-3 py-2 rounded w-full">
+            <option value="obat">Obat-obatan</option>
+            <option value="vitamin">Vitamin & Suplemen</option>
+            <option value="ibu-anak">Ibu & Anak</option>
+            <option value="herbal">Herbal</option>
+          </select>
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium text-gray-700">Path Gambar</label>
+          <input name="gambar" value={form.gambar} onChange={handleChange} className="border px-3 py-2 rounded w-full" />
+        </div>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 md:col-span-2">
+          {editingId ? "Perbarui Produk" : "Tambah Produk"}
         </button>
-
-        {isEditing && (
-          <button type="button" style={styles.buttonSecondary} onClick={batal}>
-            Batal
-          </button>
-        )}
       </form>
 
-      <table style={styles.table}>
-        <thead>
+      {/* 🔻 FILTER */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Cari produk berdasarkan nama..."
+          className="border px-4 py-2 rounded w-full"
+        />
+        <select
+          value={kategoriFilter}
+          onChange={(e) => setKategoriFilter(e.target.value)}
+          className="border px-4 py-2 rounded w-full"
+        >
+          <option value="">Semua Kategori</option>
+          {kategoriUnik.map((kategori, i) => (
+            <option key={i} value={kategori}>{kategori}</option>
+          ))}
+        </select>
+      </div>
+
+      {expiredProduk.length > 0 && (
+        <div className="mb-6 bg-red-50 border border-red-200 rounded p-4">
+          <h3 className="text-red-700 font-semibold mb-3">📛 Produk Expired</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {expiredProduk.map((item) => (
+              <div key={item.id} className="bg-white border border-red-300 rounded p-2 flex flex-col items-center text-center shadow-sm">
+                <img
+                  src={item.gambar}
+                  alt={item.nama}
+                  className="h-16 w-16 object-contain mb-1"
+                />
+                <p className="text-xs font-semibold text-red-700 truncate w-full">{item.nama}</p>
+                <p className="text-[11px] text-gray-600">Expired: {item.expired}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+
+      {/* TABEL */}
+      <table className="w-full table-auto bg-white rounded-lg shadow overflow-hidden">
+        <thead className="bg-blue-100">
           <tr>
-            <th style={styles.th}>No</th>
-            <th style={styles.th}>Nama Produk</th>
-            <th style={styles.th}>Gambar</th>
-            <th style={styles.th}>Harga</th>
-            <th style={styles.th}>Expired</th>
-            <th style={styles.th}>Jumlah Stok</th>
-            <th style={styles.th}>Nama Supplier</th>
-            <th style={styles.th}>Aksi</th>
+            {"No, Nama, Gambar, Harga, Expired, Stok, Supplier, Kategori, Aksi".split(", ").map((h) => (
+              <th key={h} className="px-4 py-2 text-left text-sm font-medium text-blue-800">
+                {h}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody>
-          {produk.length === 0 ? (
-            <tr>
-              <td colSpan="8" style={{ textAlign: "center", padding: 20 }}>
-                Tidak ada produk
+        <tbody className="divide-y divide-gray-200">
+          {filteredProduk.map((p, i) => (
+            <tr key={p.id} className="hover:bg-gray-50">
+              <td className="px-4 py-2 text-sm text-gray-600">{i + 1}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">{p.nama}</td>
+              <td className="px-4 py-2">
+                <img src={p.gambar} alt={p.nama} width="60" className="rounded" />
+              </td>
+              <td className="px-4 py-2 text-sm text-gray-800">Rp {Number(p.harga).toLocaleString()}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">{p.expired}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">{p.stock}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">{p.supplier}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">{p.kategori}</td>
+              <td className="px-4 py-2 flex gap-2">
+                <button onClick={() => handleEdit(p)} className="text-blue-600 hover:text-blue-800">
+                  <FiEdit />
+                </button>
+                <button onClick={() => hapusProduk(p.id)} className="text-red-600 hover:text-red-800">
+                  <FiTrash2 />
+                </button>
               </td>
             </tr>
-          ) : (
-            produk.map((p, idx) => (
-              <tr key={p.id}>
-                <td style={styles.td}>{idx + 1}</td>
-                <td style={styles.td}>{p.nama}</td>
-                <td style={styles.td}>
-                  <img src={p.gambar} alt={p.nama} style={{ width: 60, height: 60, borderRadius: 4 }} />
-                </td>
-                <td style={styles.td}>Rp {p.harga.toLocaleString("id-ID")}</td>
-                <td style={styles.td}>{p.expired}</td>
-                <td style={styles.td}>{p.stok}</td>
-                <td style={styles.td}>{p.supplier}</td>
-                <td style={styles.td}>
-                  <button onClick={() => editProduk(p.id)} style={{ ...styles.actionBtn, ...styles.editBtn }}>
-                    Edit
-                  </button>
-                  <button onClick={() => hapusProduk(p.id)} style={{ ...styles.actionBtn, ...styles.deleteBtn }}>
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-            ))
-          )}
+          ))}
         </tbody>
       </table>
     </div>
