@@ -14,7 +14,6 @@
     "@supabase/supabase-js": "^2.50.0",
     "@tailwindcss/vite": "^4.1.10",
     "axios": "^1.10.0",
-    "@supabase/supabase-js": "^2.50.0",
     "chart.js": "^4.5.0",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
@@ -23,7 +22,6 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.0",
     "react-toastify": "^11.0.5",
-    "supabase": "^2.26.9",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
@@ -39,29 +37,13 @@
     "json-server": "^1.0.0-beta.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.10",
     "vite": "^6.3.5"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LindaShen001/crm-23sic-kelompok1.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LindaShen001/crm-23sic-kelompok1/issues"
-  },
-  "homepage": "https://github.com/LindaShen001/crm-23sic-kelompok1#readme"
-  },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LindaShen001/crm-23sic-kelompok1.git"
+    "url": "https://github.com/LindaShen001/crm-23sic-kelompok1.git"
   },
   "keywords": [],
   "author": "",
