@@ -21,11 +21,13 @@ import KeamananPrivasi from "./pages/customers/KeamananPrivasi";
 import FAQCustomer from "./pages/customers/FAQCustomer";
 import ProfileCustomer from "./pages/customers/ProfileCustomer";
 import ContactCustomer from "./pages/customers/ContactCustomer";
+import VitaminForm from "./pages/customers/VitaminForm";
 
 // Auth Page
 import Login from "./pages/Login";
 import TransaksiTable from "./pages/admin/TranksaksiTable";
 import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
+
 
 
 function App() {
@@ -39,6 +41,7 @@ function App() {
       <Route path="/shop" element={<ProductPage />} />
       <Route path="/profile" element={<ProfileCustomer />} />
       <Route path="/kontak" element={<ContactCustomer />} />
+      <Route path="/checkvit" element={<VitaminForm />} />
 
       {/* Protected Admin Routes with Layout */}
       <Route element={<MainLayout />}>

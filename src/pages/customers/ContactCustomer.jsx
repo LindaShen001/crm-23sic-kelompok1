@@ -37,35 +37,48 @@ const ContactCustomer = () => {
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       {/* Header */}
-      <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
+      <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50"> {/* Fixed header */}
         <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
-        <nav className="flex space-x-8 text-sm font-semibold text-gray-700 items-center">
-          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
+        <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center"> {/* Meningkatkan spacing dan center alignment */}
+          <Link to="/" className="text-purple-600 font-bold transition">Home</Link> {/* Sesuaikan warna hover ke ungu */}
           <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
           <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
           <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
 
+          {/* Dropdown: Layanan */}
           <div className="relative group">
-            <button className="hover:text-purple-600 transition focus:outline-none">Layanan</button>
+            <button className="hover:text-purple-600 transition focus:outline-none">
+              Layanan
+            </button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">Keamanan & Privasi</Link>
-              <Link to="/layanan/konsultasi" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">Cek Kesehatan</Link>
+              <Link
+                to="/layanan/keamanan"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+              >
+                Keamanan & Privasi
+              </Link>
+              <Link
+                to="/checkvit"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+              >
+                Cek Kebutuhan Vitamin Anda
+              </Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="text-purple-600 font-bold transition">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
 
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
           >
             Login Admin
           </button>
         </nav>
       </header>
 
-      {/* Spacer for fixed header */}
-      <div className="pt-[72px]"></div>
+      {/* Jarak untuk fixed header */}
+      <div className="pt-[72px]"></div> {/* Sesuaikan dengan tinggi header Anda (misal: py-4 = 64px + padding) */}
 
       {/* Main content */}
       <main className="container mx-auto px-6 py-12 md:py-16">

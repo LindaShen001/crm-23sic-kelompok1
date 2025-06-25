@@ -28,10 +28,10 @@ const ProfileCustomer = () => {
                 Keamanan & Privasi
               </Link>
               <Link
-                to="/layanan/konsultasi"
+                to="/checkvit"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
               >
-                Cek Kesehatan
+                Cek Kebutuhan Vitamin Anda!
               </Link>
             </div>
           </div>
