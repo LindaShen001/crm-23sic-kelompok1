@@ -55,9 +55,6 @@ useEffect(() => {
   localStorage.setItem("laporanPenjualan", JSON.stringify(dummyData));
 }, []);
 
-
-
-
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };

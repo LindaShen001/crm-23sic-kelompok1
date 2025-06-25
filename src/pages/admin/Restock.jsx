@@ -1,47 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function ManajemenRestock() {
-  const [form, setForm] = useState({
-    tanggal: "",
-    supplier: "",
-    namaObat: "",
-    jumlah: "",
-    hargaBeli: "",
-    noFaktur: "",
-    expired: "",
-  });
+export default function Restock() {
+  const Restock = ({ addRestock, updateRestock, editingRestock }) => {
+    const [form, setForm] = useState({
+      tanggal: "",
+      supplier: "",
+      namaobat: "",
+      jumlah: "",
+      hargabeli: "",
+      nofaktur: "",
+      expired: "",
+    });
+  }
+
 
   const [dataRestok, setDataRestok] = useState([
-  {
-    tanggal: "2025-06-01",
-    supplier: "PT Kalbe Farma",
-    namaObat: "Paracetamol 500mg",
-    jumlah: "100",
-    hargaBeli: "1500",
-    noFaktur: "INV-2025/001",
-    expired: "2026-06-01",
-  },
-  {
-    tanggal: "2025-06-03",
-    supplier: "PT Kimia Farma",
-    namaObat: "Amoxicillin 250mg",
-    jumlah: "200",
-    hargaBeli: "1800",
-    noFaktur: "INV-2025/002",
-    expired: "2026-06-15",
-  },
-  {
-    tanggal: "2025-06-05",
-    supplier: "PT Phapros",
-    namaObat: "Ibuprofen 200mg",
-    jumlah: "150",
-    hargaBeli: "1600",
-    noFaktur: "INV-2025/003",
-    expired: "2026-07-01",
-  },
-]);
+    {
+      tanggal: "2025-06-01",
+      supplier: "PT Kalbe Farma",
+      namaobat: "Paracetamol 500mg",
+      jumlah: "100",
+      hargabeli: "1500",
+      nofaktur: "INV-2025/001",
+      expired: "2026-06-01",
+    },
+    {
+      tanggal: "2025-06-03",
+      supplier: "PT Kimia Farma",
+      namaobat: "Amoxicillin 250mg",
+      jumlah: "200",
+      hargabeli: "1800",
+      nofaktur: "INV-2025/002",
+      expired: "2026-06-15",
+    },
+    {
+      tanggal: "2025-06-05",
+      supplier: "PT Phapros",
+      namaobat: "Ibuprofen 200mg",
+      jumlah: "150",
+      hargabeli: "1600",
+      nofaktur: "INV-2025/003",
+      expired: "2026-07-01",
+    },
+  ]);
 
-  const [editIndex, setEditIndex] = useState(null);
+  useEffect(() => {
+    if (editingUser) setForm(editingUser);
+    else setForm({
+      tanggal: "",
+      supplier: "",
+      namaObat: "",
+      jumlah: "",
+      hargaBeli: "",
+      noFaktur: "",
+      expired: "",
+    });
+  }, [editingUser]);
+
 
   const supplierList = [
     "PT Kalbe Farma",
@@ -73,16 +88,10 @@ export default function ManajemenRestock() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (editIndex !== null) {
-      const newData = [...dataRestok];
-      newData[editIndex] = form;
-      setDataRestok(newData);
-      setEditIndex(null);
-    } else {
-      setDataRestok((prev) => [...prev, form]);
-    }
+    if (!form.tanggal || !form.supplier || !form.namaobat || !form.jumlah || !form.hargabeli || !form.nofaktur || !form.expired) return;
 
-    setForm({
+    editingRestock ? updateRestock(form) :addRestock(form);
+    setForm({ 
       tanggal: "",
       supplier: "",
       namaObat: "",
@@ -91,28 +100,6 @@ export default function ManajemenRestock() {
       noFaktur: "",
       expired: "",
     });
-  };
-
-  const handleEdit = (index) => {
-    setForm(dataRestok[index]);
-    setEditIndex(index);
-  };
-
-  const handleDelete = (index) => {
-    const newData = dataRestok.filter((_, i) => i !== index);
-    setDataRestok(newData);
-    if (editIndex === index) {
-      setForm({
-        tanggal: "",
-        supplier: "",
-        namaObat: "",
-        jumlah: "",
-        hargaBeli: "",
-        noFaktur: "",
-        expired: "",
-      });
-      setEditIndex(null);
-    }
   };
 
   return (
@@ -147,9 +134,7 @@ export default function ManajemenRestock() {
           >
             <option value="">Pilih Supplier</option>
             {supplierList.map((s, i) => (
-              <option key={i} value={s}>
-                {s}
-              </option>
+              <option key={i} value={s}>{s}</option>
             ))}
           </select>
         </div>
@@ -261,9 +246,7 @@ export default function ManajemenRestock() {
               dataRestok.map((item, index) => (
                 <tr key={index} className="border-b">
                   <td className="p-2">{item.tanggal}</td>
-                  <td className={`p-2 ${supplierColors[item.supplier] || ""}`}>
-                    {item.supplier}
-                  </td>
+                  <td className={`p-2 ${supplierColors[item.supplier] || ""}`}>{item.supplier}</td>
                   <td className="p-2">{item.namaObat}</td>
                   <td className="p-2">{item.jumlah}</td>
                   <td className="p-2">Rp {parseInt(item.hargaBeli).toLocaleString("id-ID")}</td>
@@ -292,4 +275,3 @@ export default function ManajemenRestock() {
     </div>
   );
 }
-

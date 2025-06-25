@@ -13,6 +13,7 @@ import ProductPage from "./pages/admin/ProductPage";
 import FAQAdmin from "./pages/admin/FAQAdmin";
 import Restock from "./pages/admin/Restock";
 import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
+import RegisterCustomer from "./pages/customers/RegisterCustomer";
 
 
 // Customer Pages
@@ -23,6 +24,8 @@ import FAQCustomer from "./pages/customers/FAQCustomer";
 // Auth Page
 import Login from "./pages/Login";
 import TransaksiTable from "./pages/admin/TranksaksiTable";
+import LoginCustomer from "./pages/customers/LoginCustomer";
+
 
 
 
@@ -35,6 +38,7 @@ function App() {
       <Route path="/customer/faq" element={<FAQCustomer />} />
       <Route path="/login" element={<Login />} />
       <Route path="/shop" element={<ProductPage />} />
+      <Route path="/login-customer" element={<LoginCustomer />} />
 
 
       {/* Protected Admin Routes with Layout */}
@@ -47,6 +51,7 @@ function App() {
         <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
         <Route path="/admin/Restock" element={<Restock />} />
         <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
+        <Route path="/register-customer" element={<RegisterCustomer />} />
       </Route>
     </Routes>
   );

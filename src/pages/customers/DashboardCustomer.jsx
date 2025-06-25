@@ -32,12 +32,27 @@ const DashboardCustomer = () => {
 
           <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
 
-          <button
-            onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1.5 rounded-full text-sm"
-          >
-            Login Admin
-          </button>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => navigate("/login-customer")}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1.5 rounded-full text-sm"
+            >
+              Login Customer
+            </button>
+            <button
+              onClick={() => navigate("/register-customer")}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1.5 rounded-full text-sm"
+            >
+              Daftar
+            </button>
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-full text-sm"
+            >
+              Login Admin
+            </button>
+          </div>
+
         </nav>
       </header>
 
