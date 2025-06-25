@@ -1,0 +1,71 @@
+{
+  "products": [
+    {
+      "nama": "Ezectrol",
+      "harga": 86000,
+      "expired": "2025-07-10",
+      "stok": 29,
+      "supplier": "PT Sejahtera Sehat",
+      "kategori": "obat",
+      "gambar": "images/obattablet-removebg-preview 1.png",
+      "id": "1"
+    },
+    {
+      "nama": "Hansaplast Salep Luka",
+      "harga": 23000,
+      "expired": "2025-07-11",
+      "stok": 98,
+      "supplier": "PT Kimia Farma",
+      "kategori": "obat",
+      "gambar": "images/obatsalep-removebg-preview 1.png",
+      "id": "2"
+    },
+    {
+      "id": "7f73",
+      "nama": "Vitamin c",
+      "harga": 12000,
+      "expired": "2025-06-12",
+      "stok": 3,
+      "supplier": "Pt Bumi Jaya",
+      "kategori": "alat",
+      "gambar": "\\images\\vitaminC.jpeg"
+    }
+  ],
+  "promos": [
+    {
+      "name": "Diskon Oi",
+      "discountType": "potongan",
+      "discountValue": "12000",
+      "startDate": "2025-06-20",
+      "endDate": "2025-06-27",
+      "productIds": [
+        1
+      ],
+      "id": "1"
+    },
+    {
+      "name": "Promo Juni Ceria",
+      "discountType": "khusus",
+      "discountValue": "Beli 3 gratis 1",
+      "startDate": "2025-07-03",
+      "endDate": "2025-07-04",
+      "productIds": [
+        1,
+        2
+      ],
+      "id": "3"
+    }
+  ],
+  "transaksis": [
+    {
+      "id": "",
+      "namaPelanggan": "iza",
+      "namaObat": "Ezectrol",
+      "jenisObat": "Ezectrol",
+      "promo": "2",
+      "metodePembayaran": "cod",
+      "totalPesanan": "3",
+      "namaKasir": "indah"
+    }
+  ]
+}
