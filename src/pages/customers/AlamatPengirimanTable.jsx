@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function AlamatPengirimanTable() {

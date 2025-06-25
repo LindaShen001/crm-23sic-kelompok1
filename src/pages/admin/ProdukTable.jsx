@@ -1,6 +1,6 @@
 // File: src/pages/ProdukTable.jsx
 import React, { useState, useEffect } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 export default function ProdukTable() {

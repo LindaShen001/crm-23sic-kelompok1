@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import { HiX } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 

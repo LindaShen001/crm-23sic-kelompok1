@@ -13,14 +13,8 @@ import ProdukTable from "./pages/admin/ProdukTable";
 import FAQAdmin from "./pages/admin/FAQAdmin";
 import Restock from "./pages/admin/Restock";
 import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
-import TransaksiTable from "./pages/admin/TranksaksiTable";
 import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
-import EditProduk from "./pages/admin/EditProduk";
-import EditPromo from "./pages/admin/EditPromo";
-import FormPromo from "./pages/admin/FormPromo";
-import FormProduk from "./pages/admin/FormProduk";
-import FormTransaksi from "./pages/admin/FormTransaksi";
-import PromoList from "./pages/admin/PromoList";
+import PromoList from "./pages/PromoList";
 
 // Customer Pages
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
@@ -62,7 +56,6 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pelanggan" element={<Pelanggan />} />
-          <Route path="/transaksi" element={<TransaksiTable />} />
           <Route path="/admin/kampanye" element={<Kampanye />} />
           <Route path="/obat" element={<ProdukTable />} />
           <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
@@ -70,11 +63,6 @@ function App() {
           <Route path="/admin/keluhan" element={<KeluhanDashboard />} />
           <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
           <Route path="/promo-list" element={<PromoList />} />
-          <Route path="/edit-produk/:id" element={<EditProduk />} />
-          <Route path="/edit-promo/:id" element={<EditPromo />} />
-          <Route path="/form-promo" element={<FormPromo />} />
-          <Route path="/form-produk" element={<FormProduk />} />
-          <Route path="/form-transaksi" element={<FormTransaksi />} />
         </Route>
       </Routes>
 

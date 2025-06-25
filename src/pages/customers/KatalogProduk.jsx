@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 import { HiShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
