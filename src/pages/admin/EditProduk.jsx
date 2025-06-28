@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getPromoById, updatePromo } from '../api/promoService';
-import { getProducts } from '../api/productService';
+import { getPromoById, updatePromo } from '../../api/promoService';
+import { getProducts } from '../../api/productService';
 
 const EditPromo = () => {
   const { id } = useParams();

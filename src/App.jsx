@@ -14,7 +14,9 @@ import FAQAdmin from "./pages/admin/FAQAdmin";
 import Restock from "./pages/admin/Restock";
 import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
 import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
-import PromoList from "./pages/PromoList";
+import PromoList from "./pages/admin/PromoList";
+import AlamatPengirimanTable from "./pages/admin/AlamatPengirimanTable";
+import RiwayatTransaksi from "./pages/admin/RiwayatTransaksi";
 
 // Customer Pages
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
@@ -26,9 +28,8 @@ import VitaminForm from "./pages/customers/VitaminForm";
 import Keranjang from "./pages/customers/Keranjang";
 import Checkout from "./pages/customers/Checkout";
 import OrderSuccess from "./pages/customers/OrderSuccess";
-import AlamatPengirimanTable from "./pages/customers/AlamatPengirimanTable";
 import KatalogProduk from "./pages/customers/KatalogProduk";
-import RiwayatTransaksi from "./pages/customers/RiwayatTransaksi";
+
 
 // Auth
 import Login from "./pages/Login";
@@ -49,8 +50,8 @@ function App() {
         <Route path="/keranjang" element={<Keranjang />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<OrderSuccess />} />
-        <Route path="/alamat" element={<AlamatPengirimanTable />} />
-        <Route path="/riwayat" element={<RiwayatTransaksi />} />
+        
+        
 
         {/* Protected Admin Routes */}
         <Route element={<MainLayout />}>
@@ -63,6 +64,8 @@ function App() {
           <Route path="/admin/keluhan" element={<KeluhanDashboard />} />
           <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
           <Route path="/promo-list" element={<PromoList />} />
+          <Route path="/riwayat" element={<RiwayatTransaksi />} />
+          <Route path="/alamat" element={<AlamatPengirimanTable />} />
         </Route>
       </Routes>
 

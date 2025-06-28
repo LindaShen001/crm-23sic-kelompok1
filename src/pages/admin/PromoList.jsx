@@ -1,6 +1,6 @@
 // src/pages/PromoList.jsx
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 
 export default function PromoList() {
   const [promos, setPromos] = useState([]);

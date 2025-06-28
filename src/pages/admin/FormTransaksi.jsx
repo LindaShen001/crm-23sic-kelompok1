@@ -4,7 +4,7 @@ import {
   getTransaksi,
   createTransaksi,
   updateTransaksi,
-} from "../api/transaksiService";
+} from "../../api/transaksiService";
 
 export default function FormTransaksi() {
   const [form, setForm] = useState({

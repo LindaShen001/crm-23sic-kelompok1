@@ -1,7 +1,7 @@
 // src/pages/FormPromo.jsx
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { supabase } from "../supabase";
+import { supabase } from "../../supabase";
 
 export default function FormPromo() {
   const [form, setForm] = useState({

@@ -172,21 +172,30 @@ const DashboardCustomer = () => {
         </div>
       </section>
 
-      {/* Section: Siap Memulai Hidup Sehat Bersama Kami? */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 text-white text-center">
-        <h2 className="text-3xl font-bold mb-4">Siap Memulai Hidup Sehat Bersama Kami?</h2>
-        <p className="text-lg mb-8 max-w-2xl mx-auto">
-          Dapatkan konsultasi gratis dan belanja kebutuhan kesehatan dengan mudah
-        </p>
-        <div className="flex justify-center space-x-4">
-          <button className="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-gray-100 transition-colors duration-200">
-            Konsultasi Gratis
-          </button>
-          <button className="border border-white text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-white hover:text-purple-600 transition-colors duration-200">
-            Lihat Katalog
-          </button>
-        </div>
-      </section>
+{/* Section: Siap Memulai Hidup Sehat Bersama Kami? */}
+<section className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 text-white text-center">
+  <h2 className="text-3xl font-bold mb-4">Siap Memulai Hidup Sehat Bersama Kami?</h2>
+  <p className="text-lg mb-8 max-w-2xl mx-auto">
+    Dapatkan konsultasi gratis dan belanja kebutuhan kesehatan dengan mudah
+  </p>
+  <div className="flex justify-center space-x-4">
+    <a
+      href="https://wa.me/6282114452448"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-gray-100 transition-colors duration-200"
+    >
+      Konsultasi Gratis
+    </a>
+    <a
+      href="/shop"
+      className="border border-white text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-white hover:text-purple-600 transition-colors duration-200"
+    >
+      Lihat Katalog
+    </a>
+  </div>
+</section>
+
 
       {/* Footer */}
       {/* Footer - Konsisten dengan DashboardCustomer dan ProfileCustomer */}

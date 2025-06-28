@@ -19,19 +19,15 @@ import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard />, path: "/dashboard" },
-  { name: "Pelanggan", icon: <Contact />, path: "/pelanggan" },
   { name: "Manajemen Obat", icon: <MdOutlineMedicalServices />, path: "/obat" },
-  { name: "Manajemen Transaksi", icon: <GrTransaction />, path: "/transaksi" },
   { name: "Manajemen Restock", icon: <MdSystemUpdateAlt />, path: "/admin/restock" },
   { name: "Manajemen Promo", icon: <MdDiscount />, path: "/promo-list" },
+  { name: "Promo", icon: <CiDiscount1 />, path: "/promo-list" },
   { name: "Manajemen Kampanye", icon: <MdOutlineCampaign />, path: "/admin/kampanye" },
   { name: "Manajemen FAQ", icon: <BiBookAlt />, path: "/admin/FAQAdmin" },
-  { name: "Manajemen Akun", icon: <RiAccountPinBoxLine />, path: "/admin/akun" },
+  { name: "Manajemen Akun", icon: <RiAccountPinBoxLine />, path: "/pelanggan" },
   { name: "Manajemen Keluhan", icon: <AiOutlineMail />, path: "/admin/keluhan" },
   { name: "Laporan Analisis", icon: <BiBarChart />, path: "/admin/laporan" },
-  { name: "Promo", icon: <CiDiscount1 />, path: "/promo-list" },
-  { name: "Keamanan & Privasi", icon: <Settings />, path: "/keamanan" },
-  { name: "Shop", icon: <AiOutlineShoppingCart />, path: "/shop" },
   { name: "Riwayat Transaksi", icon: <MdHistory />, path: "/riwayat" },
   { name: "Alamat Pelanggan", icon: <MdAddLocationAlt />, path: "/alamat" }
 ];

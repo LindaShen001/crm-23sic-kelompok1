@@ -15,7 +15,7 @@ const ProfileCustomer = () => {
           <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
           <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
 
-      {/* Dropdown: Layanan */}
+          {/* Dropdown: Layanan */}
           <div className="relative group">
             <button className="hover:text-purple-600 transition focus:outline-none">
               Layanan
@@ -52,7 +52,7 @@ const ProfileCustomer = () => {
 
       {/* Hero Section - Profil Kami */}
       <section className="container mx-auto px-6 py-16 md:py-20">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-2">
           {/* Teks Profil */}
           <div className="md:w-1/2 text-left">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
@@ -66,13 +66,14 @@ const ProfileCustomer = () => {
             </p>
           </div>
           {/* Gambar Profil */}
-          <div className="md:w-1/2 flex justify-center md:justify-end">
+          <div className="md:w-1/2 flex justify-center md:justify-end md:-ml-8">
             <img
-              src="https://iik.ac.id/blog/wp-content/uploads/2023/09/photo_2023-09-26_14-43-35.jpg" // Ganti dengan path gambar tim apoteker Anda
+              src="https://iik.ac.id/blog/wp-content/uploads/2023/09/photo_2023-09-26_14-43-35.jpg"
               alt="Our Team"
-              className="rounded-lg shadow-xl w-full max-w-lg object-cover"
+              className="rounded-xl shadow-xl w-full max-w-[480px] md:scale-105 object-cover transition-transform duration-300"
             />
           </div>
+
         </div>
       </section>
 
@@ -83,7 +84,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-purple-100 rounded-full p-4 mb-4">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#8B5CF6"/> {/* Purple-600 */}
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#8B5CF6" /> {/* Purple-600 */}
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Visi</h3>
@@ -96,7 +97,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-teal-100 rounded-full p-4 mb-4">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#2DD4BF"/> {/* Teal-400 */}
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#2DD4BF" /> {/* Teal-400 */}
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Misi</h3>
@@ -112,7 +113,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#3B82F6"/> {/* Blue-500 */}
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#3B82F6" /> {/* Blue-500 */}
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Nilai-Nilai</h3>
@@ -171,7 +172,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-green-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#8BC34A"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#8BC34A" />
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Produk Terjamin</h3>
@@ -181,7 +182,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM13 11H11V7H13V11ZM13 15H11V13H13V15Z" fill="#2196F3"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM13 11H11V7H13V11ZM13 15H11V13H13V15Z" fill="#2196F3" />
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Pelayanan 24/7</h3>
@@ -191,7 +192,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-purple-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 15H13V17H11V15ZM11 7H13V13H11V7Z" fill="#9C27B0"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 15H13V17H11V15ZM11 7H13V13H11V7Z" fill="#9C27B0" />
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Konsultasi Gratis</h3>
@@ -201,7 +202,7 @@ const ProfileCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
             <div className="bg-green-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 8H17V5C17 4.45 16.55 4 16 4H8C7.45 4 7 4.45 7 5V8H4C3.45 8 3 8.45 3 9V14C3 14.55 3.45 15 4 15H5V18C5 18.55 5.45 19 6 19H7V20C7 20.55 7.45 21 8 21H16C16.55 21 17 20.55 17 20V19H18C18.55 19 19 18.55 19 18V9C19 8.45 18.55 8 18 8ZM9 6H15V8H9V6ZM15 17H9V15H15V17ZM17 17V15H18V17H17Z" fill="#8BC34A"/>
+                <path d="M20 8H17V5C17 4.45 16.55 4 16 4H8C7.45 4 7 4.45 7 5V8H4C3.45 8 3 8.45 3 9V14C3 14.55 3.45 15 4 15H5V18C5 18.55 5.45 19 6 19H7V20C7 20.55 7.45 21 8 21H16C16.55 21 17 20.55 17 20V19H18C18.55 19 19 18.55 19 18V9C19 8.45 18.55 8 18 8ZM9 6H15V8H9V6ZM15 17H9V15H15V17ZM17 17V15H18V17H17Z" fill="#8BC34A" />
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Antar Gratis</h3>

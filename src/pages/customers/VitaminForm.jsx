@@ -44,7 +44,6 @@ export default function VitaminForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const dataToSend = {
       age: parseFloat(formData.age),
       sleep_hours: parseFloat(formData.sleep_hours),
@@ -58,14 +57,13 @@ export default function VitaminForm() {
     };
 
     try {
-      const response = await fetch("https://1cad-34-48-78-103.ngrok-free.app/predict", {
+      const response = await fetch("https://ff06-35-196-91-69.ngrok-free.app/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend)
       });
 
       const json = await response.json();
-
       if (json.success) {
         setResult(labelMapping[json.predicted_label]);
         if (json.predictions) {
@@ -86,108 +84,109 @@ export default function VitaminForm() {
       {
         label: "Confidence (%)",
         data: confidenceScores,
-        backgroundColor: "#0d6efd",
-        borderRadius: 8
+        backgroundColor: "#6366f1",
+        borderRadius: 6
       }
     ]
   };
 
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (context) => `${context.raw.toFixed(2)}%`
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { callback: (value) => `${value}%` }
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div>
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
         <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
-        <nav className="flex space-x-8 text-sm font-semibold text-gray-700 items-center">
-          <Link to="/" className="text-purple-600 font-bold">Home</Link>
-          <Link to="/profile" className="hover:text-purple-600">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600">FAQ</Link>
+        <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center">
+          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
+          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
           <div className="relative group">
-            <button className="hover:text-purple-600">Layanan</button>
-            <div className="absolute hidden group-hover:block bg-white shadow-lg mt-1 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Keamanan & Privasi</Link>
-              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Cek Kebutuhan Vitamin Anda</Link>
+            <button className="text-purple-600 font-bold transition focus:outline-none">Layanan</button>
+            <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
+              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200">Keamanan & Privasi</Link>
+              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200">Cek Kebutuhan Vitamin Anda</Link>
             </div>
           </div>
-          <Link to="/kontak" className="hover:text-purple-600">Hubungi Kami</Link>
-          <button
-            onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md"
-          >
-            Login Admin
-          </button>
+          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
+          <button onClick={() => navigate("/login")} className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200">Login Admin</button>
         </nav>
       </header>
 
-      {/* Spacer */}
-      <div className="pt-[80px] px-4 flex-grow">
-        {/* Form + Hasil */}
-        <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
-          <h2 className="text-xl font-bold text-center mb-6 text-gray-800">Form Prediksi Vitamin</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {[
-              { name: "age", label: "Usia" },
-              { name: "sleep_hours", label: "Jam Tidur" },
-              { name: "sun_exposure_minutes", label: "Paparan Matahari (mnt)" },
-              { name: "water_intake_liters", label: "Air Minum (liter)" },
-              { name: "stress_level", label: "Tingkat Stres (1–5)" }
-            ].map((item) => (
+      {/* Jarak header */}
+      <div className="pt-[72px]"></div>
+
+      {/* Main content */}
+      <div className="min-h-screen bg-gradient-to-b from-white to-purple-50 py-20 px-6">
+        <div className="max-w-4xl mx-auto bg-white p-10 rounded-2xl shadow-xl">
+          <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">
+            Cek Kebutuhan Vitamin Anda
+          </h2>
+
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[{ name: "age", label: "Usia", placeholder: "Masukkan usia anda" },
+              { name: "sleep_hours", label: "Jam Tidur", placeholder: "Masukkan durasi tidur anda (/hari)" },
+              { name: "sun_exposure_minutes", label: "Paparan Matahari (mnt)", placeholder: "Masukkan lama durasi paparan matahari (/hari)" },
+              { name: "water_intake_liters", label: "Air Minum (liter)", placeholder: "Masukkan liter air minum anda (/hari)" },
+              { name: "stress_level", label: "Tingkat Stres (1–5)", placeholder: "Masukkan tingkat stress level anda" }].map((item) => (
               <div key={item.name} className="flex flex-col">
-                <label className="font-semibold">{item.label}</label>
+                <label className="text-gray-700 font-semibold mb-1">{item.label}</label>
                 <input
                   name={item.name}
                   type="number"
+                  placeholder={item.placeholder}
                   value={formData[item.name]}
                   onChange={handleChange}
                   required
-                  className="p-2 border rounded-md"
+                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm"
                 />
               </div>
             ))}
 
-            {[
-              {
-                name: "gender", label: "Gender", options: [
-                  { value: "", label: "Pilih" },
-                  { value: "0", label: "Male" },
-                  { value: "1", label: "Female" }
-                ]
-              },
-              {
-                name: "health_condition", label: "Kondisi Kesehatan", options: [
-                  { value: "", label: "Pilih" },
-                  { value: "0", label: "Anemia" },
-                  { value: "1", label: "Flu Sering" },
-                  { value: "2", label: "Maag" },
-                  { value: "3", label: "Lemas" },
-                  { value: "4", label: "Normal" }
-                ]
-              },
-              {
-                name: "diet_type", label: "Pola Makan", options: [
-                  { value: "", label: "Pilih" },
-                  { value: "0", label: "Vegetarian" },
-                  { value: "1", label: "Normal" },
-                  { value: "2", label: "Kurang Sayur" }
-                ]
-              },
-              {
-                name: "activity_level", label: "Aktivitas", options: [
-                  { value: "", label: "Pilih" },
-                  { value: "0", label: "Sedentary" },
-                  { value: "1", label: "Aktif" },
-                  { value: "2", label: "Sangat Aktif" }
-                ]
-              }
-            ].map(({ name, label, options }) => (
+            {[{
+              name: "gender", label: "Gender", options: [
+                { value: "", label: "Pilih" }, { value: "0", label: "Male" }, { value: "1", label: "Female" }
+              ]
+            }, {
+              name: "health_condition", label: "Kondisi Kesehatan", options: [
+                { value: "", label: "Pilih" }, { value: "0", label: "Anemia" }, { value: "1", label: "Flu Sering" },
+                { value: "2", label: "Maag" }, { value: "3", label: "Lemas" }, { value: "4", label: "Normal" }
+              ]
+            }, {
+              name: "diet_type", label: "Pola Makan", options: [
+                { value: "", label: "Pilih" }, { value: "0", label: "Vegetarian" }, { value: "1", label: "Normal" }, { value: "2", label: "Kurang Sayur" }
+              ]
+            }, {
+              name: "activity_level", label: "Aktivitas", options: [
+                { value: "", label: "Pilih" }, { value: "0", label: "Sedentary" }, { value: "1", label: "Aktif" }, { value: "2", label: "Sangat Aktif" }
+              ]
+            }].map(({ name, label, options }) => (
               <div key={name} className="flex flex-col">
-                <label className="font-semibold">{label}</label>
+                <label className="text-gray-700 font-semibold mb-1">{label}</label>
                 <select
                   name={name}
                   value={formData[name]}
                   onChange={handleChange}
                   required
-                  className="p-2 border rounded-md"
+                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm"
                 >
                   {options.map(({ value, label }) => (
                     <option key={value} value={value}>{label}</option>
@@ -196,28 +195,49 @@ export default function VitaminForm() {
               </div>
             ))}
 
-            <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 mt-4 rounded-lg font-semibold">
-              Cek Rekomendasi
-            </button>
+            <div className="col-span-1 sm:col-span-2">
+              <button
+                type="submit"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg"
+              >
+                🔍 Cek Rekomendasi
+              </button>
+            </div>
           </form>
 
           {result && (
-            <div className="mt-6 text-center bg-green-100 text-green-800 font-semibold py-3 rounded-md">
-              Rekomendasi Vitamin: {result}
+            <div className="mt-8 text-center">
+              <div className="bg-green-100 text-green-800 border border-green-300 rounded-md py-3 px-4 font-semibold">
+                Rekomendasi Vitamin: <span className="text-lg">{result}</span>
+              </div>
             </div>
           )}
 
           {confidenceScores.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-center text-lg font-semibold mb-2">Confidence Score</h3>
-              <Bar data={chartData} />
+            <div className="mt-10">
+              <h3 className="text-center text-lg font-semibold mb-3">Confidence Score</h3>
+              <Bar data={chartData} options={chartOptions} />
+
+              {/* PROMO */}
+              <div className="mt-8 bg-purple-50 border border-purple-200 text-purple-800 rounded-xl px-6 py-5 shadow-md text-center">
+                <p className="font-semibold text-md mb-1">Butuh {result}?</p>
+                <p className="text-sm mb-3">
+                  Dapatkan suplemen <span className="font-semibold">{result}</span> berkualitas hanya di marketplace kami!
+                </p>
+                <Link
+                  to="/shop"
+                  className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+                >
+                  🔗 Cek di MarketPlace Sekarang!
+                </Link>
+              </div>
             </div>
           )}
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-8 mt-16">
+      <footer className="bg-gray-900 text-white py-12 px-8">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
@@ -230,7 +250,7 @@ export default function VitaminForm() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/layanan/konsultasi-online" className="hover:text-white">Konsultasi Online</Link></li>
               <li><Link to="/layanan/kirim-resep" className="hover:text-white">Kirim Resep</Link></li>
-              <li><Link to="/checkvit" className="hover:text-white">Cek Kebutuhan Vitamin Anda</Link></li>
+              <li><Link to="/layanan/cek-kesehatan" className="hover:text-white">Cek Kesehatan</Link></li>
             </ul>
           </div>
           <div>
@@ -247,7 +267,7 @@ export default function VitaminForm() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li>+6282114452448</li>
               <li>info@apotekasean.com</li>
-              <li>Jl. Jend. Ahmad Yani No.123, Pekanbaru, Riau</li>
+              <li>Jl. Jend. Ahmad Yani No.123, Pekanbaru</li>
             </ul>
           </div>
         </div>
