@@ -1,6 +1,6 @@
 // src/pages/admin/FAQAdmin.jsx
 import React, { useState, useEffect } from "react";
-import { loadFaqData, saveFaqData } from "../../data/faqStorage";
+import { supabase } from "../../supabase";
 
 export default function FAQAdmin() {
   const [faqList, setFaqList] = useState([]);
@@ -9,42 +9,41 @@ export default function FAQAdmin() {
   const [editId, setEditId] = useState(null);
 
   useEffect(() => {
-    setFaqList(loadFaqData());
+    fetchFAQ();
   }, []);
 
-  const handleAddOrUpdate = () => {
-    let updatedList;
+  const fetchFAQ = async () => {
+    const { data, error } = await supabase.from("faq").select("*").order("created_at", { ascending: false });
+    if (!error) setFaqList(data);
+  };
 
-    if (editId !== null) {
-      updatedList = faqList.map((faq) =>
-        faq.id === editId ? { ...faq, question, answer } : faq
-      );
-      setEditId(null);
+  const handleAddOrUpdate = async () => {
+    if (!question || !answer) return;
+
+    if (editId) {
+      await supabase
+        .from("faq")
+        .update({ pertanyaan: question, jawaban: answer })
+        .eq("id", editId);
     } else {
-      const newFAQ = {
-        id: Date.now(),
-        question,
-        answer,
-      };
-      updatedList = [...faqList, newFAQ];
+      await supabase.from("faq").insert([{ pertanyaan: question, jawaban: answer }]);
     }
 
-    setFaqList(updatedList);
-    saveFaqData(updatedList);
     setQuestion("");
     setAnswer("");
+    setEditId(null);
+    fetchFAQ();
   };
 
   const handleEdit = (faq) => {
-    setQuestion(faq.question);
-    setAnswer(faq.answer);
+    setQuestion(faq.pertanyaan);
+    setAnswer(faq.jawaban);
     setEditId(faq.id);
   };
 
-  const handleDelete = (id) => {
-    const updated = faqList.filter((faq) => faq.id !== id);
-    setFaqList(updated);
-    saveFaqData(updated);
+  const handleDelete = async (id) => {
+    await supabase.from("faq").delete().eq("id", id);
+    fetchFAQ();
   };
 
   return (
@@ -69,26 +68,20 @@ export default function FAQAdmin() {
           onClick={handleAddOrUpdate}
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
-          {editId !== null ? "Update FAQ" : "Tambah FAQ"}
+          {editId ? "Update FAQ" : "Tambah FAQ"}
         </button>
       </div>
 
       <ul className="space-y-4">
         {faqList.map((faq) => (
           <li key={faq.id} className="bg-white shadow p-4 rounded">
-            <div className="font-semibold">{faq.question}</div>
-            <div className="text-gray-700">{faq.answer}</div>
+            <div className="font-semibold">{faq.pertanyaan}</div>
+            <div className="text-gray-700">{faq.jawaban}</div>
             <div className="space-x-2 mt-2">
-              <button
-                onClick={() => handleEdit(faq)}
-                className="text-sm text-blue-600"
-              >
+              <button onClick={() => handleEdit(faq)} className="text-sm text-blue-600">
                 Edit
               </button>
-              <button
-                onClick={() => handleDelete(faq.id)}
-                className="text-sm text-red-600"
-              >
+              <button onClick={() => handleDelete(faq.id)} className="text-sm text-red-600">
                 Hapus
               </button>
             </div>

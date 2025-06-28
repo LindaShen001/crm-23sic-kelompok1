@@ -1,4 +1,8 @@
 :root {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -67,4 +71,16 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* ============================== */
+/* Tambahan untuk menyembunyikan scrollbar horizontal */
+/* ============================== */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

@@ -1,160 +1,217 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { supabase } from "../../supabase";
 
-const initialPelanggan = [
-  { id: 1, name: "Linda", email: "linda@mail.com", phone: "081234567220", active: true },
-  { id: 2, name: "Nurul Aiza", email: "nurul@mail.com", phone: "089822543210", active: false },
-  { id: 3, name: "Anlisa", email: "anlisa@mail.com", phone: "081299922877", active: true },
-];
+export default function ManajemenPelanggan() {
+  const [pelanggan, setPelanggan] = useState([]);
+  const [tampilkanForm, setTampilkanForm] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "customer",
+  });
 
-export default function Pelanggan() {
-  const [pelanggan, setPelanggan] = useState(initialPelanggan);
-  const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", active: true });
+  useEffect(() => {
+    ambilDataPelanggan();
+  }, []);
+
+  const ambilDataPelanggan = async () => {
+    const { data, error } = await supabase.from("users").select("*");
+    if (error) {
+      console.error("Gagal mengambil data:", error);
+    } else {
+      setPelanggan(data);
+    }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
-  const handleAddPelanggan = () => {
-    if (!formData.name || !formData.email || !formData.phone) {
-      alert("Semua field wajib diisi!");
+  const handleSubmit = async () => {
+    const { name, email, password, role } = formData;
+    if (!name || !email || !password || !role) {
+      alert("Mohon lengkapi semua data yang diperlukan.");
       return;
     }
-    const newPelanggan = {
-      id: pelanggan.length + 1,
-      ...formData,
-    };
-    setPelanggan([...pelanggan, newPelanggan]);
-    setFormData({ name: "", email: "", phone: "", active: true });
-    setShowForm(false);
+
+    if (editId) {
+      const { error } = await supabase
+        .from("users")
+        .update({ name, email, password: parseInt(password), role })
+        .eq("id", editId);
+      if (!error) {
+        resetForm();
+        ambilDataPelanggan();
+      }
+    } else {
+      const { error } = await supabase
+        .from("users")
+        .insert([{ name, email, password: parseInt(password), role }]);
+      if (!error) {
+        resetForm();
+        ambilDataPelanggan();
+      }
+    }
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Yakin ingin menghapus pelanggan ini?")) {
-      setPelanggan(pelanggan.filter((c) => c.id !== id));
+  const handleEdit = (cust) => {
+    setFormData({
+      name: cust.name,
+      email: cust.email,
+      password: cust.password,
+      role: cust.role,
+    });
+    setEditId(cust.id);
+    setTampilkanForm(true);
+  };
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", password: "", role: "customer" });
+    setEditId(null);
+    setTampilkanForm(false);
+  };
+
+  const handleDelete = async (id) => {
+    const konfirmasi = window.confirm("Apakah Anda yakin ingin menghapus data account ini?");
+    if (!konfirmasi) return;
+
+    const { error } = await supabase.from("users").delete().eq("id", id);
+    if (!error) {
+      ambilDataPelanggan();
     }
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-4">Management Pelanggan</h1>
+    <div className="p-8 max-w-6xl mx-auto font-sans">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Manajemen Data Account</h1>
+      <p className="text-gray-600 mb-6">
+        Halaman ini digunakan untuk mengelola informasi Account, termasuk menambah, memperbarui, dan menghapus data yang diperlukan.
+      </p>
 
       <button
-        onClick={() => setShowForm((prev) => !prev)}
-        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        onClick={() => {
+          if (tampilkanForm && editId) {
+            resetForm();
+          } else {
+            setTampilkanForm((prev) => !prev);
+          }
+        }}
+        className="mb-6 px-5 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition"
       >
-        {showForm ? "Batal Tambah Pelanggan" : "Tambah Pelanggan"}
+        {tampilkanForm ? (editId ? "Batal Ubah Data" : "Tutup Form") : "Tambah Account Baru"}
       </button>
 
-      {showForm && (
-        <div className="mb-6 p-4 border border-gray-300 rounded shadow-sm bg-white">
-          <div className="mb-2">
-            <label className="block font-medium mb-1">Nama</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Nama pelanggan"
-            />
+      {tampilkanForm && (
+        <div className="mb-10 bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            {editId ? "Ubah Data Account" : "Formulir Tambah Account"}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Nama Lengkap</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Password (Angka)</label>
+              <input
+                type="number"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Peran Pengguna</label>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+                className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-400"
+              >
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
           </div>
-          <div className="mb-2">
-            <label className="block font-medium mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Email pelanggan"
-            />
+          <div className="mt-6 flex gap-3">
+            <button
+              onClick={handleSubmit}
+              className="px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            >
+              {editId ? "Perbarui Data" : "Simpan Data"}
+            </button>
+            <button
+              onClick={resetForm}
+              className="px-5 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 transition"
+            >
+              Batal
+            </button>
           </div>
-          <div className="mb-2">
-            <label className="block font-medium mb-1">Telepon</label>
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Nomor telepon"
-            />
-          </div>
-          <div className="flex items-center mb-4">
-            <input
-              type="checkbox"
-              name="active"
-              checked={formData.active}
-              onChange={handleInputChange}
-              id="activeCheckbox"
-              className="mr-2"
-            />
-            <label htmlFor="activeCheckbox" className="font-medium">Aktif</label>
-          </div>
-          <button
-            onClick={handleAddPelanggan}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-          >
-            Simpan
-          </button>
         </div>
       )}
 
-      <div className="overflow-x-auto bg-white rounded shadow">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="overflow-x-auto bg-white rounded-lg shadow-md">
+        <table className="min-w-full divide-y divide-gray-200 text-sm">
+          <thead className="bg-gray-100 text-left">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telepon</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+              <th className="px-6 py-3 font-medium text-gray-600">Nama</th>
+              <th className="px-6 py-3 font-medium text-gray-600">Email</th>
+              <th className="px-6 py-3 font-medium text-gray-600">Peran</th>
+              <th className="px-6 py-3 text-center font-medium text-gray-600">Tindakan</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
-            {pelanggan.map((cust) => (
-              <tr key={cust.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">{cust.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{cust.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{cust.phone}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-center">
-                  {cust.active ? (
-                    <span className="inline-flex px-2 text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Aktif
-                    </span>
-                  ) : (
-                    <span className="inline-flex px-2 text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                      Tidak Aktif
-                    </span>
-                  )}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-center space-x-2">
-                  <button
-                    className="text-blue-600 hover:text-blue-900 font-semibold"
-                    onClick={() => alert("Fitur Edit belum tersedia")}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="text-red-600 hover:text-red-900 font-semibold"
-                    onClick={() => handleDelete(cust.id)}
-                  >
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {pelanggan.length === 0 && (
+          <tbody className="divide-y divide-gray-100">
+            {pelanggan.length === 0 ? (
               <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-500">
-                  Tidak ada data pelanggan
+                <td colSpan="4" className="text-center py-6 text-gray-400">
+                  Belum ada data account yang tersedia.
                 </td>
               </tr>
+            ) : (
+              pelanggan.map((cust) => (
+                <tr key={cust.id} className="hover:bg-gray-50 transition">
+                  <td className="px-6 py-4">{cust.name}</td>
+                  <td className="px-6 py-4">{cust.email}</td>
+                  <td className="px-6 py-4 capitalize">{cust.role}</td>
+                  <td className="px-6 py-4 text-center">
+                    <button
+                      onClick={() => handleEdit(cust)}
+                      className="text-blue-600 hover:underline mr-4"
+                    >
+                      Ubah
+                    </button>
+                    <button
+                      onClick={() => handleDelete(cust.id)}
+                      className="text-red-600 hover:underline"
+                    >
+                      Hapus
+                    </button>
+                  </td>
+                </tr>
+              ))
             )}
           </tbody>
         </table>
