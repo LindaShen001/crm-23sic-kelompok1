@@ -13,10 +13,15 @@ import ProdukTable from "./pages/admin/ProdukTable";
 import FAQAdmin from "./pages/admin/FAQAdmin";
 import Restock from "./pages/admin/Restock";
 import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
+
+import RegisterCustomer from "./pages/customers/RegisterCustomer";
+
+
 import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
 import PromoList from "./pages/admin/PromoList";
 import AlamatPengirimanTable from "./pages/admin/AlamatPengirimanTable";
 import RiwayatTransaksi from "./pages/admin/RiwayatTransaksi";
+
 
 // Customer Pages
 import DashboardCustomer from "./pages/customers/DashboardCustomer";
@@ -33,6 +38,12 @@ import KatalogProduk from "./pages/customers/KatalogProduk";
 
 // Auth
 import Login from "./pages/Login";
+
+
+import LoginCustomer from "./pages/customers/LoginCustomer";
+
+
+
 
 function App() {
   return (
@@ -69,9 +80,13 @@ function App() {
         </Route>
       </Routes>
 
+
+
+
       {/* Notifikasi */}
       <ToastContainer position="top-right" autoClose={3000} />
     </>
+
   );
 }
 
