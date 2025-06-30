@@ -46,33 +46,6 @@ import LoginCustomer from "./pages/customers/LoginCustomer";
 
 function App() {
   return (
-    <Routes>
-      {/* Public & Customer Routes */}
-      <Route path="/" element={<DashboardCustomer />} />
-      <Route path="/layanan/keamanan" element={<KeamananPrivasi />} />
-      <Route path="/customer/faq" element={<FAQCustomer />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/shop" element={<ProductPage />} />
-      <Route path="/login-customer" element={<LoginCustomer />} />
-
-
-      {/* Protected Admin Routes with Layout */}
-      <Route element={<MainLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/pelanggan" element={<Pelanggan />} />
-        <Route path="/transaksi" element={<TransaksiTable />} />
-        <Route path="//admin/kampanye" element={<Kampanye />} />
-        <Route path="/obat" element={<ProdukTable />} />
-        <Route path="/admin/FAQAdmin" element={<FAQAdmin />} />
-        <Route path="/admin/Restock" element={<Restock />} />
-        <Route path="/admin/Laporan" element={<LaporanAnalisis />} />
-        <Route path="/register-customer" element={<RegisterCustomer />} />
-      </Route>
-    </Routes>
-
-
-function App() {
-  return (
     <>
       <Routes>
         {/* Public & Customer Routes */}
@@ -103,6 +76,9 @@ function App() {
           <Route path="/promo-list" element={<PromoList />} />
         </Route>
       </Routes>
+
+
+
 
       {/* Notifikasi */}
       <ToastContainer position="top-right" autoClose={3000} />
