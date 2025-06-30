@@ -1,95 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-
-export default function Restock() {
-  const Restock = ({ addRestock, updateRestock, editingRestock }) => {
-    const [form, setForm] = useState({
-      tanggal: "",
-      supplier: "",
-      namaobat: "",
-      jumlah: "",
-      hargabeli: "",
-      nofaktur: "",
-      expired: "",
-    });
-  }
-
-
-  const [dataRestok, setDataRestok] = useState([
-    {
-      tanggal: "2025-06-01",
-      supplier: "PT Kalbe Farma",
-      namaobat: "Paracetamol 500mg",
-      jumlah: "100",
-      hargabeli: "1500",
-      nofaktur: "INV-2025/001",
-      expired: "2026-06-01",
-    },
-    {
-      tanggal: "2025-06-03",
-      supplier: "PT Kimia Farma",
-      namaobat: "Amoxicillin 250mg",
-      jumlah: "200",
-      hargabeli: "1800",
-      nofaktur: "INV-2025/002",
-      expired: "2026-06-15",
-    },
-    {
-      tanggal: "2025-06-05",
-      supplier: "PT Phapros",
-      namaobat: "Ibuprofen 200mg",
-      jumlah: "150",
-      hargabeli: "1600",
-      nofaktur: "INV-2025/003",
-      expired: "2026-07-01",
-    },
-  ]);
-
-  useEffect(() => {
-    if (editingUser) setForm(editingUser);
-    else setForm({
-      tanggal: "",
-      supplier: "",
-      namaObat: "",
-      jumlah: "",
-      hargaBeli: "",
-      noFaktur: "",
-      expired: "",
-    });
-  }, [editingUser]);
-
-
-  const supplierList = [
-    "PT Kalbe Farma",
-    "PT Kimia Farma",
-    "PT Phapros",
-    "PT Indofarma",
-  ];
-
-  const daftarObat = [
-    "Paracetamol 500mg",
-    "Amoxicillin 250mg",
-    "Ibuprofen 200mg",
-    "Cetirizine 10mg",
-    "Vitamin C 500mg",
-  ];
-=======
 import { supabase } from "../../supabase";
 
 export default function Restock() {
-  const [form, setForm] = useState({
-    tanggal: "",
-    supplier: "",
-    namaobat: "",
-    jumlah: "",
-    hargabeli: "",
-    nofaktur: "",
-    expired: "",
-  });
-
-  const [dataRestok, setDataRestok] = useState([]);
-  const [editId, setEditId] = useState(null);
-
   const defaultForm = {
     tanggal: "",
     supplier: "",
@@ -100,6 +12,9 @@ export default function Restock() {
     expired: "",
   };
 
+  const [form, setForm] = useState(defaultForm);
+  const [dataRestok, setDataRestok] = useState([]);
+  const [editId, setEditId] = useState(null);
 
   const supplierList = ["PT Kalbe Farma", "PT Kimia Farma", "PT Phapros", "PT Indofarma"];
   const daftarObat = ["Paracetamol 500mg", "Amoxicillin 250mg", "Ibuprofen 200mg", "Cetirizine 10mg", "Vitamin C 500mg"];
@@ -132,28 +47,12 @@ export default function Restock() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-    if (!form.tanggal || !form.supplier || !form.namaobat || !form.jumlah || !form.hargabeli || !form.nofaktur || !form.expired) return;
-
-    editingRestock ? updateRestock(form) :addRestock(form);
-    setForm({ 
-      tanggal: "",
-      supplier: "",
-      namaObat: "",
-      jumlah: "",
-      hargaBeli: "",
-      noFaktur: "",
-      expired: "",
-    });
-  };
-
+    // Validasi form
+    const isEmpty = Object.values(form).some((val) => val === "");
+    if (isEmpty) return;
 
     if (editId) {
-      const { error } = await supabase
-        .from("restock")
-        .update(form)
-        .eq("id", editId);
-
+      const { error } = await supabase.from("restock").update(form).eq("id", editId);
       if (error) console.error("Update error:", error);
       else {
         fetchData();
@@ -180,7 +79,6 @@ export default function Restock() {
     if (error) console.error("Delete error:", error);
     else fetchData();
   };
-
 
   return (
     <div className="p-6">
@@ -264,11 +162,7 @@ export default function Restock() {
                 <tr key={item.id} className="border-b">
                   <td className="p-2">{item.tanggal}</td>
                   <td className={`p-2 ${supplierColors[item.supplier] || ""}`}>{item.supplier}</td>
-
-                  <td className="p-2">{item.namaObat}</td>
-
                   <td className="p-2">{item.namaobat}</td>
-
                   <td className="p-2">{item.jumlah}</td>
                   <td className="p-2">Rp {parseInt(item.hargabeli).toLocaleString("id-ID")}</td>
                   <td className="p-2">{item.nofaktur}</td>

@@ -38,7 +38,7 @@ import RiwayatTransaksi from "./pages/customers/RiwayatTransaksi";
 // Auth
 import Login from "./pages/Login";
 
-import TransaksiTable from "./pages/admin/TranksaksiTable";
+
 import LoginCustomer from "./pages/customers/LoginCustomer";
 
 
