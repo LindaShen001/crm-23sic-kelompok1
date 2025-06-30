@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 
 export default function Restock() {
+  const [form, setForm] = useState({
+    tanggal: "",
+    supplier: "",
+    namaobat: "",
+    jumlah: "",
+    hargabeli: "",
+    nofaktur: "",
+    expired: "",
+  });
+
+  const [dataRestok, setDataRestok] = useState([]);
+  const [editId, setEditId] = useState(null);
+
   const defaultForm = {
     tanggal: "",
     supplier: "",
@@ -11,10 +24,6 @@ export default function Restock() {
     nofaktur: "",
     expired: "",
   };
-
-  const [form, setForm] = useState(defaultForm);
-  const [dataRestok, setDataRestok] = useState([]);
-  const [editId, setEditId] = useState(null);
 
   const supplierList = ["PT Kalbe Farma", "PT Kimia Farma", "PT Phapros", "PT Indofarma"];
   const daftarObat = ["Paracetamol 500mg", "Amoxicillin 250mg", "Ibuprofen 200mg", "Cetirizine 10mg", "Vitamin C 500mg"];
@@ -47,12 +56,12 @@ export default function Restock() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validasi form
-    const isEmpty = Object.values(form).some((val) => val === "");
-    if (isEmpty) return;
-
     if (editId) {
-      const { error } = await supabase.from("restock").update(form).eq("id", editId);
+      const { error } = await supabase
+        .from("restock")
+        .update(form)
+        .eq("id", editId);
+
       if (error) console.error("Update error:", error);
       else {
         fetchData();
