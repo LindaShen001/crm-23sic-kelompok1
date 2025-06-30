@@ -14,8 +14,6 @@ import FAQAdmin from "./pages/admin/FAQAdmin";
 import Restock from "./pages/admin/Restock";
 import LaporanAnalisis from "./pages/admin/LaporanAnalisis";
 
-import RegisterCustomer from "./pages/customers/RegisterCustomer";
-
 
 import KeluhanDashboard from "./pages/admin/KeluhanDashboard";
 import PromoList from "./pages/admin/PromoList";
@@ -38,9 +36,8 @@ import KatalogProduk from "./pages/customers/KatalogProduk";
 
 // Auth
 import Login from "./pages/Login";
+import RegisterCustomer from "./pages/RegisterCustomer";
 
-
-import LoginCustomer from "./pages/customers/LoginCustomer";
 
 
 
@@ -54,6 +51,7 @@ function App() {
         <Route path="/layanan/keamanan" element={<KeamananPrivasi />} />
         <Route path="/customer/faq" element={<FAQCustomer />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<RegisterCustomer />} />
         <Route path="/shop" element={<KatalogProduk />} />
         <Route path="/profile" element={<ProfileCustomer />} />
         <Route path="/kontak" element={<ContactCustomer />} />

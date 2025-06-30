@@ -45,33 +45,17 @@ const DashboardCustomer = () => {
 
 
           <div className="flex space-x-2">
-            <button
-              onClick={() => navigate("/login-customer")}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1.5 rounded-full text-sm"
-            >
-              Login Customer
-            </button>
-            <button
-              onClick={() => navigate("/register-customer")}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1.5 rounded-full text-sm"
-            >
-              Daftar
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-full text-sm"
-            >
-              Login Admin
-            </button>
-          </div>
-
-
-          <button
+          
+           <button
             onClick={() => navigate("/login")}
             className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
           >
-            Login Admin
+            Login
           </button>
+          </div>
+
+
+        
 
         </nav>
       </header>

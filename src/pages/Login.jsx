@@ -1,8 +1,8 @@
 // src/pages/Login.jsx
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../supabase"; // Pastikan path ini benar dan file supabase.js ada
+import { useNavigate, Link } from "react-router-dom";
+import { supabase } from "../supabase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,13 +12,19 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
 
-    // Ambil user dari Supabase berdasarkan email dan password
+    if (!email || !password) {
+      setError("Email dan password harus diisi.");
+      return;
+    }
+
+    // Ambil user dari Supabase berdasarkan email dan password (string)
     const { data, error } = await supabase
       .from("users")
       .select("*")
       .eq("email", email)
-      .eq("password", parseInt(password)) // sesuaikan jika password integer di DB
+      .eq("password", password) // pakai string, tanpa parseInt
       .single();
 
     if (error || !data) {
@@ -51,6 +57,7 @@ const Login = () => {
             placeholder="Masukkan Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="mb-6">
@@ -61,6 +68,7 @@ const Login = () => {
             placeholder="Masukkan Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button
@@ -69,6 +77,13 @@ const Login = () => {
         >
           Login
         </button>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Belum punya akun?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Daftar Sekarang!
+          </Link>
+        </p>
       </form>
     </div>
   );

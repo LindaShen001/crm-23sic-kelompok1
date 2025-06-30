@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
+import { supabase } from "../supabase";
 
 const RegisterCustomer = () => {
   const [form, setForm] = useState({
@@ -24,7 +24,7 @@ const RegisterCustomer = () => {
     // 1. Daftarkan user ke Supabase Auth
     const { data, error: signUpError } = await supabase.auth.signUp({
       email: form.email,
-      password: form.password,
+      password: form.password, // string password
     });
 
     if (signUpError) {
@@ -33,14 +33,15 @@ const RegisterCustomer = () => {
       return;
     }
 
-    // 2. Masukkan data ke tabel users (custom)
     const { user } = data;
 
+    // 2. Masukkan data ke tabel users (custom)
     const { error: insertError } = await supabase.from("users").insert([
       {
         id: user.id,
         name: form.name,
         email: form.email,
+        password: form.password, // simpan password sebagai string
         role: "customer",
         created_at: new Date().toISOString(),
       },
@@ -50,7 +51,7 @@ const RegisterCustomer = () => {
       setError(insertError.message);
     } else {
       alert("Registrasi berhasil! Silakan login.");
-      navigate("/login-customer");
+      navigate("/login");
     }
 
     setLoading(false);
@@ -65,6 +66,7 @@ const RegisterCustomer = () => {
         <h2 className="text-2xl font-bold text-center mb-6 text-purple-700">
           Registrasi Pengguna
         </h2>
+
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
         <div className="mb-4">
