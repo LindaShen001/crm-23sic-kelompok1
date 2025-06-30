@@ -113,31 +113,30 @@ export default function VitaminForm() {
     <div>
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center">
-          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
-          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
+          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+          <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
           <div className="relative group">
-            <button className="text-purple-600 font-bold transition focus:outline-none">Layanan</button>
+            <button className="text-blue-600 font-bold transition focus:outline-none">Layanan</button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200">Keamanan & Privasi</Link>
-              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200">Cek Kebutuhan Vitamin Anda</Link>
+              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200">Keamanan & Privasi</Link>
+              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200">Cek Kebutuhan Vitamin Anda</Link>
             </div>
           </div>
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
-          <button onClick={() => navigate("/login")} className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200">Login Admin</button>
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
+          <button onClick={() => navigate("/login")} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200">Login Admin</button>
         </nav>
       </header>
 
-      {/* Jarak header */}
-      <div className="pt-[72px]"></div>
+    
 
       {/* Main content */}
-      <div className="min-h-screen bg-gradient-to-b from-white to-purple-50 py-20 px-6">
+      <div className="min-h-screen bg-gradient-to-b from-white to-blue-50 py-20 px-6">
         <div className="max-w-4xl mx-auto bg-white p-10 rounded-2xl shadow-xl">
-          <h2 className="text-3xl font-bold text-center text-purple-700 mb-8">
+          <h2 className="text-3xl font-bold text-center text-blue-700 mb-8">
             Cek Kebutuhan Vitamin Anda
           </h2>
 
@@ -156,7 +155,7 @@ export default function VitaminForm() {
                   value={formData[item.name]}
                   onChange={handleChange}
                   required
-                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm"
+                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm"
                 />
               </div>
             ))}
@@ -186,7 +185,7 @@ export default function VitaminForm() {
                   value={formData[name]}
                   onChange={handleChange}
                   required
-                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm"
+                  className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none shadow-sm"
                 >
                   {options.map(({ value, label }) => (
                     <option key={value} value={value}>{label}</option>
@@ -198,7 +197,7 @@ export default function VitaminForm() {
             <div className="col-span-1 sm:col-span-2">
               <button
                 type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg"
               >
                 🔍 Cek Rekomendasi
               </button>
@@ -219,14 +218,14 @@ export default function VitaminForm() {
               <Bar data={chartData} options={chartOptions} />
 
               {/* PROMO */}
-              <div className="mt-8 bg-purple-50 border border-purple-200 text-purple-800 rounded-xl px-6 py-5 shadow-md text-center">
+              <div className="mt-8 bg-blue-50 border border-blue-200 text-blue-800 rounded-xl px-6 py-5 shadow-md text-center">
                 <p className="font-semibold text-md mb-1">Butuh {result}?</p>
                 <p className="text-sm mb-3">
                   Dapatkan suplemen <span className="font-semibold">{result}</span> berkualitas hanya di marketplace kami!
                 </p>
                 <Link
                   to="/shop"
-                  className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition"
                 >
                   🔗 Cek di MarketPlace Sekarang!
                 </Link>
@@ -240,7 +239,7 @@ export default function VitaminForm() {
       <footer className="bg-gray-900 text-white py-12 px-8">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">
               Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.
             </p>

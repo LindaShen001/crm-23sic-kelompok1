@@ -9,27 +9,27 @@ export default function KeamananPrivasi() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center">
-          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
-          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
+          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+          <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
 
           {/* Dropdown: Layanan */}
           <div className="relative group">
-            <button className="text-purple-600 font-bold transition focus:outline-none">Layanan</button>
+            <button className="text-blue-600 font-bold transition focus:outline-none">Layanan</button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">Keamanan & Privasi</Link>
-              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition">Cek Kebutuhan Vitamin Anda</Link>
+              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition">Keamanan & Privasi</Link>
+              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition">Cek Kebutuhan Vitamin Anda</Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
 
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200"
           >
             Login Admin
           </button>
@@ -59,7 +59,7 @@ export default function KeamananPrivasi() {
             {/* Enkripsi */}
             <section>
               <h2 className="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2">
-                <Lock className="w-5 h-5 text-purple-600" />
+                <Lock className="w-5 h-5 text-blue-600" />
                 Enkripsi & Perlindungan Data
               </h2>
               <ul className="list-disc list-inside text-gray-700 space-y-1">
@@ -104,7 +104,7 @@ export default function KeamananPrivasi() {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Kolom 1 */}
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">
               Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.
             </p>

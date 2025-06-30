@@ -38,39 +38,39 @@ const ContactCustomer = () => {
     <div className="bg-gray-50 min-h-screen font-sans">
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50"> {/* Fixed header */}
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center"> {/* Meningkatkan spacing dan center alignment */}
-          <Link to="/" className="text-purple-600 font-bold transition">Home</Link> {/* Sesuaikan warna hover ke ungu */}
-          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
+          <Link to="/" className="text-blue-600 font-bold transition">Home</Link> {/* Sesuaikan warna hover ke ungu */}
+          <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
 
           {/* Dropdown: Layanan */}
           <div className="relative group">
-            <button className="hover:text-purple-600 transition focus:outline-none">
+            <button className="hover:text-blue-600 transition focus:outline-none">
               Layanan
             </button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
               <Link
                 to="/layanan/keamanan"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Keamanan & Privasi
               </Link>
               <Link
                 to="/checkvit"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Cek Kebutuhan Vitamin Anda
               </Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
 
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
           >
             Login Admin
           </button>
@@ -92,15 +92,15 @@ const ContactCustomer = () => {
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">Kirim Pesan</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="text" name="nama" placeholder="Nama" value={formData.nama} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500" />
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500" />
-              <input type="tel" name="telepon" placeholder="Telepon" value={formData.telepon} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <input type="text" name="nama" placeholder="Nama" value={formData.nama} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="tel" name="telepon" placeholder="Telepon" value={formData.telepon} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <select
                 name="subjek"
                 value={formData.subjek}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="" disabled>Pilih Subjek</option>
                 <option value="Pertanyaan Umum">Pertanyaan Umum</option>
@@ -110,8 +110,8 @@ const ContactCustomer = () => {
                 <option value="Lainnya">Lainnya</option>
               </select>
 
-              <textarea name="pesan" rows="4" placeholder="Pesan Anda" value={formData.pesan} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 resize-vertical"></textarea>
-              <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition font-semibold">Kirim</button>
+              <textarea name="pesan" rows="4" placeholder="Pesan Anda" value={formData.pesan} onChange={handleChange} required className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-vertical"></textarea>
+              <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-green-700 transition font-semibold">Kirim</button>
               {status && (
                 <p className={`text-sm text-center mt-2 ${status.includes('Berhasil') ? 'text-green-600' : 'text-red-600'}`}>
                   {status}
@@ -126,7 +126,7 @@ const ContactCustomer = () => {
               <h2 className="text-xl font-semibold text-gray-800 mb-6">Informasi Kontak Kami</h2>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="bg-green-100 p-3 rounded-full">
+                  <div className="bg-blue-100 p-3 rounded-full">
                     <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   </div>
                   <div>
@@ -146,8 +146,8 @@ const ContactCustomer = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-purple-100 p-3 rounded-full">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  <div className="bg-blue-100 p-3 rounded-full">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0L6.343 16.657a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   </div>
                   <div>
                     <p className="text-gray-500 text-sm">Alamat Kami</p>
@@ -187,7 +187,7 @@ const ContactCustomer = () => {
       <footer className="bg-gray-900 text-white py-12 px-8 mt-12">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.</p>
           </div>
           <div>

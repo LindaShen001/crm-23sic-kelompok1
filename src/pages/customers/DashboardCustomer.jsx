@@ -13,39 +13,39 @@ const DashboardCustomer = () => {
     <div className="bg-white min-h-screen font-sans"> {/* Menambahkan font-sans agar lebih konsisten */}
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50"> {/* Fixed header */}
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center"> {/* Meningkatkan spacing dan center alignment */}
-          <Link to="/" className="text-purple-600 font-bold transition">Home</Link> {/* Sesuaikan warna hover ke ungu */}
-          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
+          <Link to="/" className="text-blue-600 font-bold transition">Home</Link> {/* Sesuaikan warna hover ke ungu */}
+          <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
 
           {/* Dropdown: Layanan */}
           <div className="relative group">
-            <button className="hover:text-purple-600 transition focus:outline-none">
+            <button className="hover:text-blue-600 transition focus:outline-none">
               Layanan
             </button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
               <Link
                 to="/layanan/keamanan"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Keamanan & Privasi
               </Link>
               <Link
                 to="/checkvit"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Cek Kebutuhan Vitamin Anda
               </Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
 
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200" // Menyesuaikan padding, font, dan shadow
           >
             Login Admin
           </button>
@@ -64,7 +64,7 @@ const DashboardCustomer = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent z-10"></div> {/* Efek gradien overlay */}
         <div className="relative z-20 text-left pl-16 pr-8 max-w-2xl"> {/* Sesuaikan posisi teks */}
-          <h1 className="text-5xl font-extrabold text-purple-800 mb-4 leading-tight"> {/* Font yang lebih besar dan bold */}
+          <h1 className="text-5xl font-extrabold text-blue-800 mb-4 leading-tight"> {/* Font yang lebih besar dan bold */}
             Selamat Datang di Apotek ASEAN
           </h1>
           <p className="text-gray-700 text-lg mb-8 leading-relaxed"> {/* Font dan spasi yang lebih besar */}
@@ -72,7 +72,7 @@ const DashboardCustomer = () => {
           </p>
           <button
             onClick={() => navigate("/shop")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition-all duration-300 transform hover:scale-105" // Ukuran tombol lebih besar dan efek hover
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition-all duration-300 transform hover:scale-105" // Ukuran tombol lebih besar dan efek hover
           >
             Belanja Sekarang
           </button>
@@ -88,7 +88,7 @@ const DashboardCustomer = () => {
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1: Produk Terpercaya */}
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
-            {/* <FaShieldAlt className="text-purple-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
+            {/* <FaShieldAlt className="text-blue-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
             <div className="bg-green-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#8BC34A" />
@@ -99,8 +99,8 @@ const DashboardCustomer = () => {
           </div>
           {/* Card 2: Konsultasi Ahli */}
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
-            {/* <FaLightbulb className="text-purple-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
-            <div className="bg-purple-100 rounded-full p-4 mb-4">
+            {/* <FaLightbulb className="text-blue-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
+            <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM11 15H13V17H11V15ZM11 7H13V13H11V7Z" fill="#9C27B0" />
               </svg>
@@ -110,7 +110,7 @@ const DashboardCustomer = () => {
           </div>
           {/* Card 3: Pengiriman Cepat */}
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
-            {/* <FaTruck className="text-purple-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
+            {/* <FaTruck className="text-blue-600 text-5xl mb-4" /> */} {/* Placeholder ikon */}
             <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 8H17V5C17 4.45 16.55 4 16 4H8C7.45 4 7 4.45 7 5V8H4C3.45 8 3 8.45 3 9V14C3 14.55 3.45 15 4 15H5V18C5 18.55 5.45 19 6 19H7V20C7 20.55 7.45 21 8 21H16C16.55 21 17 20.55 17 20V19H18C18.55 19 19 18.55 19 18V9C19 8.45 18.55 8 18 8ZM9 6H15V8H9V6ZM15 17H9V15H15V17ZM17 17V15H18V17H17Z" fill="#2196F3" />
@@ -141,7 +141,7 @@ const DashboardCustomer = () => {
           </div>
           {/* Kategori 2: Vitamin & Suplemen */}
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center text-center cursor-pointer hover:shadow-lg transition">
-            <div className="bg-purple-50 rounded-full p-4 mb-4">
+            <div className="bg-blue-50 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 17H13V11H11V17ZM11 7H13V9H11V7Z" fill="#9C27B0" />
               </svg>
@@ -173,23 +173,31 @@ const DashboardCustomer = () => {
       </section>
 
 {/* Section: Siap Memulai Hidup Sehat Bersama Kami? */}
-<section className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 text-white text-center">
-  <h2 className="text-3xl font-bold mb-4">Siap Memulai Hidup Sehat Bersama Kami?</h2>
-  <p className="text-lg mb-8 max-w-2xl mx-auto">
+<section className="bg-gradient-to-r from-blue-800 via-blue-600 to-cyan-500 py-20 text-white text-center">
+  <h2 className="text-3xl font-bold mb-4 drop-shadow-sm">
+    Siap Memulai Hidup Sehat Bersama Kami?
+  </h2>
+  <p className="text-lg mb-8 max-w-2xl mx-auto drop-shadow-sm">
     Dapatkan konsultasi gratis dan belanja kebutuhan kesehatan dengan mudah
   </p>
-  <div className="flex justify-center space-x-4">
+  <div className="flex flex-wrap justify-center gap-4">
     <a
       href="https://wa.me/6282114452448"
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-gray-100 transition-colors duration-200"
+      className="bg-white text-blue-700 px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-blue-50 transition-colors duration-200"
     >
       Konsultasi Gratis
     </a>
     <a
+      href="/checkvit"
+      className="border border-white text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-white hover:text-blue-700 transition-colors duration-200"
+    >
+      Check Kebutuhan Vitamin Anda
+    </a>
+    <a
       href="/shop"
-      className="border border-white text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-white hover:text-purple-600 transition-colors duration-200"
+      className="border border-white text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:bg-white hover:text-blue-700 transition-colors duration-200"
     >
       Lihat Katalog
     </a>
@@ -203,7 +211,7 @@ const DashboardCustomer = () => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Kolom 1: Apotek ASEAN Info */}
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">
               Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.
             </p>

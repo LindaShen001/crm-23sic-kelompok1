@@ -8,39 +8,39 @@ const ProfileCustomer = () => {
     <div className="bg-white min-h-screen font-sans">
       {/* Header - Konsisten dengan DashboardCustomer */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center">
-          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
-          <Link to="/profile" className="text-purple-600 font-bold transition">Profil</Link> {/* Highlight 'Profil' */}
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600 transition">FAQ</Link>
+          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+          <Link to="/profile" className="text-blue-600 font-bold transition">Profil</Link> {/* Highlight 'Profil' */}
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600 transition">FAQ</Link>
 
           {/* Dropdown: Layanan */}
           <div className="relative group">
-            <button className="hover:text-purple-600 transition focus:outline-none">
+            <button className="hover:text-blue-600 transition focus:outline-none">
               Layanan
             </button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
               <Link
                 to="/layanan/keamanan"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Keamanan & Privasi
               </Link>
               <Link
                 to="/checkvit"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition duration-200"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition duration-200"
               >
                 Cek Kebutuhan Vitamin Anda!
               </Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
 
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200"
           >
             Login Admin
           </button>
@@ -82,9 +82,9 @@ const ProfileCustomer = () => {
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Visi */}
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
-            <div className="bg-purple-100 rounded-full p-4 mb-4">
+            <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#8B5CF6" /> {/* Purple-600 */}
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.24 6 7 8.24 7 11C7 13.38 9.17 16.14 12 19C14.83 16.14 17 13.38 17 11C17 8.24 14.76 6 12 6Z" fill="#8B5CF6" /> {/* blue-600 */}
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 mb-3">Visi</h3>
@@ -190,7 +190,7 @@ const ProfileCustomer = () => {
           </div>
           {/* Card 3: Konsultasi Gratis */}
           <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
-            <div className="bg-purple-100 rounded-full p-4 mb-4">
+            <div className="bg-blue-100 rounded-full p-4 mb-4">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 15H13V17H11V15ZM11 7H13V13H11V7Z" fill="#9C27B0" />
               </svg>
@@ -217,7 +217,7 @@ const ProfileCustomer = () => {
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Kolom 1: Apotek ASEAN Info */}
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">
               Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.
             </p>

@@ -150,23 +150,23 @@ export default function KatalogProduk() {
     <div className="min-h-screen bg-[#FAFAFA]">
       {/* Header */}
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 items-center">
-          <Link to="/" className="hover:text-purple-600">Home</Link>
-          <Link to="/profile" className="hover:text-purple-600">Profil</Link>
-          <Link to="/shop" className="text-purple-600 font-bold">Produk</Link>
-          <Link to="/customer/faq" className="hover:text-purple-600">FAQ</Link>
+          <Link to="/" className="hover:text-blue-600">Home</Link>
+          <Link to="/profile" className="hover:text-blue-600">Profil</Link>
+          <Link to="/shop" className="text-blue-600 font-bold">Produk</Link>
+          <Link to="/customer/faq" className="hover:text-blue-600">FAQ</Link>
           <div className="relative group">
-            <button className="hover:text-purple-600">Layanan</button>
+            <button className="hover:text-blue-600">Layanan</button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Keamanan & Privasi</Link>
-              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Cek Kebutuhan Vitamin Anda</Link>
+              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700">Keamanan & Privasi</Link>
+              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700">Cek Kebutuhan Vitamin Anda</Link>
             </div>
           </div>
-          <Link to="/kontak" className="hover:text-purple-600">Hubungi Kami</Link>
+          <Link to="/kontak" className="hover:text-blue-600">Hubungi Kami</Link>
           <button
             onClick={() => navigate("/login")}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md"
           >
             Login Admin
           </button>
@@ -217,7 +217,7 @@ export default function KatalogProduk() {
       <footer className="bg-gray-900 text-white py-12 px-8 mt-12">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.</p>
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a>

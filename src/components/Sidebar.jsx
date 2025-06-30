@@ -22,7 +22,6 @@ const menuItems = [
   { name: "Manajemen Obat", icon: <MdOutlineMedicalServices />, path: "/obat" },
   { name: "Manajemen Restock", icon: <MdSystemUpdateAlt />, path: "/admin/restock" },
   { name: "Manajemen Promo", icon: <MdDiscount />, path: "/promo-list" },
-  { name: "Promo", icon: <CiDiscount1 />, path: "/promo-list" },
   { name: "Manajemen Kampanye", icon: <MdOutlineCampaign />, path: "/admin/kampanye" },
   { name: "Manajemen FAQ", icon: <BiBookAlt />, path: "/admin/FAQAdmin" },
   { name: "Manajemen Akun", icon: <RiAccountPinBoxLine />, path: "/pelanggan" },

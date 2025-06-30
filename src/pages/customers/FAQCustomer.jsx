@@ -25,23 +25,23 @@ export default function FAQCustomer() {
   return (
     <div className="bg-gray-50 min-h-screen font-sans flex flex-col">
       <header className="bg-white shadow-md px-6 py-4 flex justify-between items-center fixed top-0 left-0 w-full z-50">
-        <div className="text-2xl font-bold text-purple-700">Apotek ASEAN</div>
+        <div className="text-2xl font-bold text-blue-700">Apotek ASEAN</div>
         <nav className="flex space-x-8 text-sm font-semibold text-gray-700 relative items-center">
-          <Link to="/" className="hover:text-purple-600 transition">Home</Link>
-          <Link to="/profile" className="hover:text-purple-600 transition">Profil</Link>
-          <Link to="/shop" className="hover:text-purple-600 transition">Produk</Link>
-          <Link to="/customer/faq" className="text-purple-600 font-bold transition">FAQ</Link>
+          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
+          <Link to="/profile" className="hover:text-blue-600 transition">Profil</Link>
+          <Link to="/shop" className="hover:text-blue-600 transition">Produk</Link>
+          <Link to="/customer/faq" className="text-blue-600 font-bold transition">FAQ</Link>
 
           <div className="relative group">
-            <button className="hover:text-purple-600 transition focus:outline-none">Layanan</button>
+            <button className="hover:text-blue-600 transition focus:outline-none">Layanan</button>
             <div className="absolute hidden group-hover:block bg-white shadow-lg mt-0 rounded-md z-10 min-w-[180px] py-1 top-full left-0">
-              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Keamanan & Privasi</Link>
-              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-100 hover:text-purple-700">Cek Kebutuhan Vitamin Anda</Link>
+              <Link to="/layanan/keamanan" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700">Keamanan & Privasi</Link>
+              <Link to="/checkvit" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700">Cek Kebutuhan Vitamin Anda</Link>
             </div>
           </div>
 
-          <Link to="/kontak" className="hover:text-purple-600 transition">Hubungi Kami</Link>
-          <button onClick={() => navigate("/login")} className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200">
+          <Link to="/kontak" className="hover:text-blue-600 transition">Hubungi Kami</Link>
+          <button onClick={() => navigate("/login")} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md transition-colors duration-200">
             Login Admin
           </button>
         </nav>
@@ -49,7 +49,7 @@ export default function FAQCustomer() {
 
       <div className="pt-[72px] flex-grow">
         <div className="p-6 max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-purple-700 mb-8 text-center border-b pb-4">
+          <h1 className="text-3xl font-bold text-blue-700 mb-8 text-center border-b pb-4">
             Frequently Asked Questions
           </h1>
 
@@ -57,8 +57,8 @@ export default function FAQCustomer() {
             {faqList.map((faq, index) => (
               <div key={faq.id} className="bg-white p-5 rounded-xl shadow-md border border-gray-200 transition duration-200 hover:shadow-lg">
                 <button className="flex justify-between items-center w-full text-left" onClick={() => toggleFAQ(index)}>
-                  <h2 className="text-lg font-semibold text-purple-800">{faq.pertanyaan}</h2>
-                  <FiChevronDown className={`h-5 w-5 text-purple-500 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} />
+                  <h2 className="text-lg font-semibold text-blue-800">{faq.pertanyaan}</h2>
+                  <FiChevronDown className={`h-5 w-5 text-blue-500 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} />
                 </button>
                 {openIndex === index && (
                   <p className="text-gray-700 mt-3 leading-relaxed transition-all duration-300">
@@ -75,7 +75,7 @@ export default function FAQCustomer() {
       <footer className="bg-gray-900 text-white py-12 px-8">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="text-2xl font-bold text-purple-400 mb-4">Apotek ASEAN</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">Apotek ASEAN</div>
             <p className="text-gray-400 text-sm">
               Mengedepankan pelayanan kesehatan terpercaya untuk memenuhi kebutuhan masyarakat.
             </p>

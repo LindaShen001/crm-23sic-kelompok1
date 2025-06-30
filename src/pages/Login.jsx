@@ -41,7 +41,7 @@ const Login = () => {
         onSubmit={handleLogin}
         className="bg-white shadow-md p-8 rounded-xl w-full max-w-sm"
       >
-        <h2 className="text-2xl font-bold text-center mb-6 text-purple-700">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700">Login</h2>
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         <div className="mb-4">
           <label className="block text-sm mb-1">Email</label>
@@ -65,7 +65,7 @@ const Login = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
         >
           Login
         </button>
