@@ -113,8 +113,9 @@ export default function RiwayatTransaksi() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-xl font-semibold mb-4 text-blue-700">📋 Riwayat Transaksi</h2>
+        <div className="p-6 pt-[64px] lg:pl-[256px]">
+      <h1 className="text-2xl font-bold mb-4">Riwayat Transaksi</h1>
+ 
 
       {notification && (
         <div className="mb-4 text-green-600 text-sm text-center bg-green-50 py-2 rounded shadow">

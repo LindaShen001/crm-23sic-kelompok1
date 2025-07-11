@@ -1,197 +1,299 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../supabase";
 
-const Kampanye = () => {
-  const [campaigns, setCampaigns] = useState([]);
+export default function Restock() {
+  // State untuk mengelola data form input
   const [form, setForm] = useState({
-    id: null,
-    judul: "",
-    konten: "",
-    status: "aktif",
     tanggal: "",
+    supplier: "",
+    namaobat: "",
+    jumlah: "",
+    hargabeli: "",
+    nofaktur: "",
+    expired: "",
   });
 
-  // Ambil data dari Supabase
-  const fetchCampaigns = async () => {
-    const { data, error } = await supabase.from("kampanye").select("*").order("tanggal", { ascending: false });
-    if (!error) setCampaigns(data);
-    else console.error("Gagal fetch:", error.message);
+  // State untuk menyimpan data restok yang diambil dari Supabase
+  const [dataRestok, setDataRestok] = useState([]);
+  // State untuk menandai item yang sedang diedit (menyimpan ID item)
+  const [editId, setEditId] = useState(null);
+
+  // Nilai default untuk form, digunakan saat mereset form
+  const defaultForm = {
+    tanggal: "",
+    supplier: "",
+    namaobat: "",
+    jumlah: "",
+    hargabeli: "",
+    nofaktur: "",
+    expired: "",
   };
 
+  // Daftar supplier yang tersedia
+  const supplierList = ["PT Kalbe Farma", "PT Kimia Farma", "PT Phapros", "PT Indofarma"];
+  // Daftar nama obat yang tersedia (untuk datalist)
+  const daftarObat = ["Paracetamol 500mg", "Amoxicillin 250mg", "Ibuprofen 200mg", "Cetirizine 10mg", "Vitamin C 500mg"];
+  // Mapping warna latar belakang untuk setiap supplier
+  const supplierColors = {
+    "PT Kalbe Farma": "bg-gray-300",
+    "PT Kimia Farma": "bg-blue-200",
+    "PT Phapros": "bg-green-200",
+    "PT Indofarma": "bg-blue-200",
+  };
+
+  // Efek samping untuk memuat data saat komponen pertama kali di-render
   useEffect(() => {
-    fetchCampaigns();
+    fetchData();
   }, []);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  // Fungsi untuk mengambil data restok dari Supabase
+  const fetchData = async () => {
+    const { data, error } = await supabase
+      .from("restock")
+      .select("*")
+      .order("created_at", { ascending: false }); // Mengurutkan data berdasarkan waktu pembuatan terbaru
+
+    if (error) {
+      console.error("Fetch error:", error);
+    } else {
+      setDataRestok(data);
+    }
   };
 
+  // Fungsi untuk menangani perubahan pada input form
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Fungsi untuk menangani submit form (tambah atau update data)
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Mencegah reload halaman
 
-    // Validasi
-    if (!form.judul || !form.konten || !form.status || !form.tanggal) {
-      alert("Semua field harus diisi!");
-      return;
-    }
-
-    const formattedDate = new Date(form.tanggal).toISOString();
-
-    if (form.id) {
-      // UPDATE
+    if (editId) {
+      // Jika dalam mode edit, lakukan update data
       const { error } = await supabase
-        .from("kampanye")
-        .update({
-          judul: form.judul,
-          konten: form.konten,
-          status: form.status,
-          tanggal: formattedDate,
-        })
-        .eq("id", form.id);
+        .from("restock")
+        .update(form)
+        .eq("id", editId);
 
       if (error) {
-        console.error("Gagal update:", error.message);
+        console.error("Update error:", error);
       } else {
-        fetchCampaigns();
-        resetForm();
+        fetchData(); // Muat ulang data setelah update
+        setForm(defaultForm); // Reset form ke nilai default
+        setEditId(null); // Keluar dari mode edit
       }
     } else {
-      // INSERT
-      const { error } = await supabase.from("kampanye").insert([
-        {
-          judul: form.judul,
-          konten: form.konten,
-          status: form.status,
-          tanggal: formattedDate,
-        },
-      ]);
-
+      // Jika tidak dalam mode edit, lakukan insert data baru
+      const { error } = await supabase.from("restock").insert([form]);
       if (error) {
-        console.error("Gagal tambah:", error.message);
+        console.error("Insert error:", error);
       } else {
-        fetchCampaigns();
-        resetForm();
+        fetchData(); // Muat ulang data setelah insert
+        setForm(defaultForm); // Reset form ke nilai default
       }
     }
   };
 
-  const handleEdit = (kampanye) => {
-    setForm({
-      id: kampanye.id,
-      judul: kampanye.judul,
-      konten: kampanye.konten,
-      status: kampanye.status,
-      tanggal: kampanye.tanggal?.slice(0, 16), // untuk input datetime-local
-    });
+  // Fungsi untuk mengaktifkan mode edit dan mengisi form dengan data item yang dipilih
+  const handleEdit = (item) => {
+    setForm(item);
+    setEditId(item.id);
   };
 
+  // Fungsi untuk menghapus data restok
   const handleDelete = async (id) => {
-    const { error } = await supabase.from("kampanye").delete().eq("id", id);
-    if (!error) fetchCampaigns();
-    else console.error("Gagal hapus:", error.message);
-  };
-
-  const resetForm = () => {
-    setForm({
-      id: null,
-      judul: "",
-      konten: "",
-      status: "aktif",
-      tanggal: "",
-    });
+    const { error } = await supabase.from("restock").delete().eq("id", id);
+    if (error) {
+      console.error("Delete error:", error);
+    } else {
+      fetchData(); // Muat ulang data setelah delete
+    }
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Manajemen Edukasi & Promosi Kesehatan</h2>
+    // **PERHATIAN PENTING DI SINI:**
+    // Tambahkan `pt-[TinggiHeaderAnda]` dan `lg:pl-[LebarSidebarAnda]`.
+    // Ganti `[TinggiHeaderAnda]` dan `[LebarSidebarAnda]` dengan nilai piksel sebenarnya.
+    // Contoh: Jika header Anda 64px, gunakan `pt-[64px]`.
+    // Contoh: Jika sidebar Anda 256px, gunakan `lg:pl-[256px]`.
+    // Kelas `p-6` akan menambahkan padding di semua sisi,
+    // sedangkan `pt-[...]` dan `pl-[...]` akan menimpa padding default di sisi atas dan kiri.
+    <div className="p-6 pt-[64px] lg:pl-[256px]">
+      <h2 className="text-2xl font-bold mb-4">Manajemen Restok</h2>
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4 mb-6">
-        <input
-          name="judul"
-          placeholder="Judul Kampanye"
-          value={form.judul}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <textarea
-          name="konten"
-          placeholder="Konten Kampanye"
-          value={form.konten}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <select
-          name="status"
-          value={form.status}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        >
-          <option value="aktif">Aktif</option>
-          <option value="nonaktif">Nonaktif</option>
-        </select>
-        <input
-          type="datetime-local"
-          name="tanggal"
-          value={form.tanggal}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <div className="flex gap-2">
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            {form.id ? "Update Kampanye" : "Tambah Kampanye"}
+      {/* FORM SECTION */}
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-white shadow rounded p-4">
+        {/* Input Tanggal Pembelian */}
+        <div>
+          <label className="block text-sm font-medium">Tanggal Pembelian</label>
+          <input
+            type="date"
+            name="tanggal"
+            value={form.tanggal}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        {/* Input Supplier */}
+        <div>
+          <label className="block text-sm font-medium">Supplier</label>
+          <select
+            name="supplier"
+            value={form.supplier}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          >
+            <option value="">Pilih Supplier</option>
+            {supplierList.map((s, i) => (
+              <option key={i} value={s}>{s}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Input Nama Obat */}
+        <div>
+          <label className="block text-sm font-medium">Nama Obat</label>
+          <input
+            type="text"
+            name="namaobat"
+            list="daftarObat" // Menghubungkan ke datalist
+            value={form.namaobat}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+          <datalist id="daftarObat">
+            {daftarObat.map((o, i) => (
+              <option key={i} value={o} />
+            ))}
+          </datalist>
+        </div>
+
+        {/* Input Jumlah */}
+        <div>
+          <label className="block text-sm font-medium">Jumlah</label>
+          <input
+            type="number"
+            name="jumlah"
+            value={form.jumlah}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        {/* Input Harga Beli */}
+        <div>
+          <label className="block text-sm font-medium">Harga Beli</label>
+          <input
+            type="number"
+            name="hargabeli"
+            value={form.hargabeli}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        {/* Input No Faktur */}
+        <div>
+          <label className="block text-sm font-medium">No Faktur</label>
+          <input
+            type="text"
+            name="nofaktur"
+            value={form.nofaktur}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        {/* Input Expired Date */}
+        <div>
+          <label className="block text-sm font-medium">Expired</label>
+          <input
+            type="date"
+            name="expired"
+            value={form.expired}
+            onChange={handleChange}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        {/* Tombol Submit Form */}
+        <div className="sm:col-span-2 md:col-span-3">
+          <button
+            type="submit"
+            className="mt-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          >
+            {editId ? "Update Data" : "Tambah Data Restok"}
           </button>
-          {form.id && (
-            <button
-              type="button"
-              onClick={resetForm}
-              className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
-            >
-              Batal
-            </button>
-          )}
         </div>
       </form>
 
-      {/* List */}
-      <h3 className="text-xl font-semibold mb-2">Daftar Kampanye</h3>
-      {campaigns.length === 0 ? (
-        <p>Belum ada kampanye.</p>
-      ) : (
-        <ul className="space-y-2">
-          {campaigns.map((c) => (
-            <li key={c.id} className="border p-4 rounded flex justify-between items-start">
-              <div>
-                <p className="font-bold text-purple-700">{c.judul}</p>
-                <p>{c.konten}</p>
-                <p className="text-sm text-gray-600">Kirim pada: {new Date(c.tanggal).toLocaleString()}</p>
-                <p className={`text-sm ${c.status === "aktif" ? "text-green-500" : "text-red-500"}`}>
-                  Status: {c.status}
-                </p>
-              </div>
-              <div className="space-x-2">
-                <button
-                  onClick={() => handleEdit(c)}
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(c.id)}
-                  className="text-red-600 font-semibold hover:underline"
-                >
-                  Hapus
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      {/* TABLE SECTION */}
+      <div className="bg-white shadow rounded p-4 mt-6">
+        <h4 className="text-lg font-semibold mb-3">Riwayat Restok</h4>
+        <div className="overflow-x-auto"> {/* Menambahkan overflow untuk responsivitas tabel */}
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="text-left border-b">
+                <th className="p-2">Tanggal</th>
+                <th className="p-2">Supplier</th>
+                <th className="p-2">Nama Obat</th>
+                <th className="p-2">Jumlah</th>
+                <th className="p-2">Harga Beli</th>
+                <th className="p-2">No Faktur</th>
+                <th className="p-2">Expired</th>
+                <th className="p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataRestok.length === 0 ? (
+                <tr>
+                  <td colSpan="8" className="p-4 text-center text-gray-500">
+                    Belum ada data
+                  </td>
+                </tr>
+              ) : (
+                dataRestok.map((item) => (
+                  <tr key={item.id} className="border-b">
+                    <td className="p-2">{item.tanggal}</td>
+                    <td className={`p-2 ${supplierColors[item.supplier] || ""}`}>
+                      {item.supplier}
+                    </td>
+                    <td className="p-2">{item.namaobat}</td>
+                    <td className="p-2">{item.jumlah}</td>
+                    <td className="p-2">Rp {parseInt(item.hargabeli).toLocaleString("id-ID")}</td>
+                    <td className="p-2">{item.nofaktur}</td>
+                    <td className="p-2">{item.expired}</td>
+                    <td className="p-2 space-x-2">
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className="bg-blue-400 hover:bg-blue-500 text-white px-2 py-1 rounded text-xs"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs"
+                      >
+                        Hapus
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Kampanye;
+}

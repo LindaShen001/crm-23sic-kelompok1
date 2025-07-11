@@ -42,8 +42,8 @@ const Sidebar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <aside className="bg-white w-64 min-h-screen max-h-screen overflow-y-auto shadow-lg px-4 py-6 hidden md:block">
-      <div className="text-xl font-bold mb-8 text-purple-700">Dashboard Admin</div>
+   <aside className="bg-white w-68 shadow-lg px-4 py-6 hidden md:block fixed top-0 left-0 h-screen overflow-y-auto">
+      <div className="text-xl font-bold mb-8 text-blue-700">Dashboard Admin</div>
 
       {/* Navigasi Utama */}
       <nav className="space-y-1">
@@ -51,9 +51,9 @@ const Sidebar = () => {
           <Link
             key={item.name}
             to={item.path}
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-purple-100 transition ${
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-100 transition ${
               isActive(item.path)
-                ? "bg-purple-200 text-purple-800 font-semibold"
+                ? "bg-blue-200 text-blue-800 font-semibold"
                 : "text-gray-700"
             }`}
           >
@@ -70,9 +70,9 @@ const Sidebar = () => {
           <Link
             key={item.name}
             to={item.path}
-            className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-purple-100 transition ${
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-100 transition ${
               isActive(item.path)
-                ? "bg-purple-200 text-purple-800 font-semibold"
+                ? "bg-blue-200 text-blue-800 font-semibold"
                 : "text-gray-700"
             }`}
           >

@@ -40,7 +40,7 @@ const Dashboard = () => {
       color: "blue",
     },
     { label: "Klien Baru", value: "+3,462", percent: "-2%", color: "red" },
-    { label: "Penjualan", value: "$103,430", percent: "+5%", color: "purple" },
+    { label: "Penjualan", value: "$103,430", percent: "+5%", color: "blue" },
   ];
 
   const barData = {
@@ -122,7 +122,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="pl-10 pr-6 py-6 bg-gray-50 min-h-screen space-y-8">
+    // Perubahan di sini: Tambahkan pl-[280px] atau kelas yang sesuai dengan lebar w-70
+    <div className="pl-10 pr-6 py-6 bg-gray-50 min-h-screen space-y-8 md:pl-[280px]">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Dashboard Admin</h1>
 
       {/* Statistik */}

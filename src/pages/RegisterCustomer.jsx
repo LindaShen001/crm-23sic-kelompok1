@@ -63,7 +63,7 @@ const RegisterCustomer = () => {
         onSubmit={handleRegister}
         className="bg-white shadow-md p-8 rounded-xl w-full max-w-sm"
       >
-        <h2 className="text-2xl font-bold text-center mb-6 text-purple-700">
+        <h2 className="text-2xl font-bold text-center mb-6 text-blue-700">
           Registrasi Pengguna
         </h2>
 
@@ -110,7 +110,7 @@ const RegisterCustomer = () => {
 
         <button
           type="submit"
-          className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
           disabled={loading}
         >
           {loading ? "Mendaftarkan..." : "Daftar"}

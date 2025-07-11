@@ -57,7 +57,7 @@ export default function VitaminForm() {
     };
 
     try {
-      const response = await fetch("https://ff06-35-196-91-69.ngrok-free.app/predict", {
+      const response = await fetch("https://e294-34-125-195-23.ngrok-free.app/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend)
